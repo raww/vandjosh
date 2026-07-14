@@ -1,0 +1,43 @@
+---
+// The five neon discipline markers — ○ △ □ ✳ ✕ — drawn as stroke-only
+// glyphs with round caps and joins, in the spirit of PlayStation face
+// buttons. Colour + glow come from --sym-c (see .vj-symbol in site.css).
+const SHAPES = {
+  film: { shape: 'circle', token: '--sym-film' },
+  experiential: { shape: 'triangle', token: '--sym-experiential' },
+  digital: { shape: 'square', token: '--sym-digital' },
+  b2b: { shape: 'asterisk', token: '--sym-b2b' },
+  social: { shape: 'cross', token: '--sym-social' },
+};
+
+function kindOf(name) {
+  const n = String(name || '').toLowerCase().trim();
+  if (n.startsWith('film')) return 'film';
+  if (n.startsWith('exp')) return 'experiential';
+  if (n.startsWith('dig')) return 'digital';
+  if (n.startsWith('b2b')) return 'b2b';
+  if (n.startsWith('soc')) return 'social';
+  return SHAPES[n] ? n : 'film';
+}
+
+const { name, size = 22, strokeWidth = 2.4, title } = Astro.props;
+const kind = kindOf(name);
+const { shape, token } = SHAPES[kind];
+---
+
+<svg
+  class="vj-symbol"
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  role="img"
+  aria-label={title || kind}
+  stroke-width={strokeWidth}
+  style={`--sym-c: var(${token})`}
+>
+  {shape === 'circle' && <circle cx="12" cy="12" r="8.2" />}
+  {shape === 'triangle' && <path d="M12 3.6 L20.6 19 L3.4 19 Z" />}
+  {shape === 'square' && <rect x="4.7" y="4.7" width="14.6" height="14.6" rx="2.2" />}
+  {shape === 'asterisk' && <path d="M12 2.8 V21.2 M4.03 7.4 L19.97 16.6 M19.97 7.4 L4.03 16.6" />}
+  {shape === 'cross' && <path d="M5.8 5.8 L18.2 18.2 M18.2 5.8 L5.8 18.2" />}
+</svg>

@@ -1,0 +1,156 @@
+---
+// One project fills one frame: centred title + description, then an
+// asymmetric collage whose arrangement depends on how much media and
+// info (stats / notes / press) the project has. Ported 1:1 from the
+// prototype's ProjectFrame.jsx.
+import { PRESS } from '../data/projects.js';
+import { withBase } from '../lib/paths.js';
+
+const { project } = Astro.props;
+
+const media = [project.hero, ...(project.images || [])].filter(Boolean);
+const n = media.length;
+const film = project.disciplines.includes('Film');
+const hasInfo =
+  (project.stats && project.stats.length > 0) ||
+  (project.press && project.press.length > 0) ||
+  (project.notes && project.notes.length > 0);
+
+const press = (project.press || []).map((k) => PRESS[k]).filter(Boolean);
+
+// choose a collage arrangement: grid template + which slots render
+const [feat, b, c] = media;
+let grid;
+let slots; // ordered list of { kind: 'tile' | 'info' | 'cover', src?, area, film? }
+
+if (n === 0) {
+  if (hasInfo) {
+    grid = { cols: '1.25fr 1fr', rows: '1fr', areas: `"feat info"` };
+    slots = [
+      { kind: 'cover', area: 'feat' },
+      { kind: 'info', area: 'info' },
+    ];
+  } else {
+    grid = { cols: '1fr', rows: '1fr', areas: `"feat"` };
+    slots = [{ kind: 'cover', area: 'feat' }];
+  }
+} else if (n >= 3 && hasInfo) {
+  grid = { cols: '1.35fr 1fr', rows: '1fr 1fr', areas: `"feat side1" "info side2"` };
+  slots = [
+    { kind: 'tile', src: feat, film, area: 'feat' },
+    { kind: 'tile', src: b, area: 'side1' },
+    { kind: 'info', area: 'info' },
+    { kind: 'tile', src: c, area: 'side2' },
+  ];
+} else if (n === 2 && hasInfo) {
+  grid = { cols: '1.35fr 1fr', rows: '1fr 1fr', areas: `"feat side1" "info side1"` };
+  slots = [
+    { kind: 'tile', src: feat, film, area: 'feat' },
+    { kind: 'tile', src: b, area: 'side1' },
+    { kind: 'info', area: 'info' },
+  ];
+} else if (n === 1 && hasInfo) {
+  grid = { cols: '1fr 1.4fr', rows: '1fr', areas: `"info feat"` };
+  slots = [
+    { kind: 'info', area: 'info' },
+    { kind: 'tile', src: feat, film, area: 'feat' },
+  ];
+} else if (n >= 3) {
+  grid = { cols: '1.4fr 1fr', rows: '1fr 1fr', areas: `"feat side1" "feat side2"` };
+  slots = [
+    { kind: 'tile', src: feat, film, area: 'feat' },
+    { kind: 'tile', src: b, area: 'side1' },
+    { kind: 'tile', src: c, area: 'side2' },
+  ];
+} else if (n === 2) {
+  grid = { cols: '1.2fr 1fr', rows: '1fr', areas: `"feat side1"` };
+  slots = [
+    { kind: 'tile', src: feat, film, area: 'feat' },
+    { kind: 'tile', src: b, area: 'side1' },
+  ];
+} else {
+  grid = { cols: '1fr', rows: '1fr', areas: `"feat"` };
+  slots = [{ kind: 'tile', src: feat, film, area: 'feat' }];
+}
+
+const gridStyle = `grid-template-columns:${grid.cols};grid-template-rows:${grid.rows};grid-template-areas:${grid.areas};`;
+---
+
+<section class="vj-frame">
+  <header class="vj-frame-header">
+    <h1>{project.client} &ndash; {project.title}</h1>
+    {project.description && <p class="vj-frame-desc">{project.description}</p>}
+  </header>
+
+  <div class="vj-collage" style={gridStyle}>
+    {
+      slots.map((slot) => {
+        if (slot.kind === 'tile') {
+          return (
+            <div class="vj-tile" style={`grid-area:${slot.area}`}>
+              {slot.src && (
+                <img
+                  src={withBase(slot.src)}
+                  alt=""
+                  loading={slot.area === 'feat' ? 'eager' : 'lazy'}
+                  fetchpriority={slot.area === 'feat' ? 'high' : undefined}
+                />
+              )}
+              {slot.film && (
+                <div class="vj-play">
+                  <div class="vj-play-ring">
+                    <svg width="26" height="30" viewBox="0 0 26 30" aria-hidden="true">
+                      <path d="M2 2 L24 15 L2 28 Z" fill="#fff" />
+                    </svg>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        }
+        if (slot.kind === 'cover') {
+          return (
+            <div class="vj-textcover" style={`grid-area:${slot.area}`}>
+              <span class="vj-textcover-title">{project.title}</span>
+              {film && (
+                <div class="vj-play-ring">
+                  <svg width="22" height="26" viewBox="0 0 26 30" aria-hidden="true">
+                    <path d="M2 2 L24 15 L2 28 Z" fill="#fff" />
+                  </svg>
+                </div>
+              )}
+            </div>
+          );
+        }
+        return (
+          <div class="vj-info" style={`grid-area:${slot.area}`}>
+            {project.stats && project.stats.length > 0 && (
+              <div class="vj-stats">
+                {project.stats.map((s) => (
+                  <div class="vj-stat">
+                    <span class="vj-stat-figure">{s.figure}</span>
+                    <span class="vj-stat-label">{s.label}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+            {project.notes && project.notes.length > 0 && (
+              <div class="vj-notes">
+                {project.notes.map((note) => (
+                  <span>{note}</span>
+                ))}
+              </div>
+            )}
+            {press.length > 0 && (
+              <div class="vj-press-grid">
+                {press.map((file) => (
+                  <img src={withBase(`assets/press/${file}`)} alt="" loading="lazy" />
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })
+    }
+  </div>
+</section>

@@ -1,0 +1,76 @@
+---
+// Source of the share card (public/og/card.png). Not linked or indexed —
+// it exists so the card can be regenerated with the site's real fonts:
+//   npm run dev, then screenshot this route at exactly 1200×630.
+// See README "Regenerating the share card".
+import '@fontsource/courier-prime/700.css';
+import '@fontsource-variable/hanken-grotesk';
+import '../styles/tokens.css';
+import Symbol from '../components/Symbol.astro';
+import { DISCIPLINES } from '../data/projects.js';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1200" />
+    <meta name="robots" content="noindex" />
+    <title>Share card — Vicky &amp; Josh</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+      }
+      .card {
+        width: 1200px;
+        height: 630px;
+        box-sizing: border-box;
+        background: radial-gradient(120% 80% at 70% 0%, var(--black-top) 0%, var(--black) 55%);
+        background-color: var(--black);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 44px;
+      }
+      .name {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: 108px;
+        line-height: 1;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--white);
+      }
+      .role {
+        font-family: var(--font-sans);
+        font-size: 30px;
+        color: var(--white-2);
+      }
+      .symbols {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+        margin-top: 10px;
+      }
+      .symbols :global(.vj-symbol) {
+        fill: none;
+        stroke: var(--sym-c);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        filter: drop-shadow(0 0 4px color-mix(in srgb, var(--sym-c) 60%, transparent))
+          drop-shadow(0 0 16px color-mix(in srgb, var(--sym-c) 30%, transparent));
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="name">Vicky &amp; Josh</div>
+      <div class="role">Senior Creative Team &mdash; Art + Copy</div>
+      <div class="symbols">
+        {DISCIPLINES.map((d) => <Symbol name={d} size={44} strokeWidth={2.2} />)}
+      </div>
+    </div>
+  </body>
+</html>

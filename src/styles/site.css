@@ -1,0 +1,618 @@
+/* ============================================================
+   Vicky & Josh — site styles.
+   A faithful port of the design prototype: dark editorial canvas,
+   left rail + full-viewport project frame. Colour comes only from
+   the five neon discipline symbols and the photography.
+   ============================================================ */
+
+/* ---------- base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(120% 80% at 70% 0%, var(--black-top) 0%, var(--black) 55%);
+  background-attachment: fixed;
+  background-color: var(--black);
+  color: var(--text-body);
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-mono);
+  color: var(--text-strong);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-mono);
+  line-height: var(--leading-tight);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--text-strong);
+  text-decoration: none;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out);
+}
+a:hover {
+  color: var(--accent);
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--sym-film);
+  color: var(--on-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---------- shell ---------- */
+.vj-shell {
+  display: flex;
+  align-items: flex-start;
+}
+
+.vj-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* ---------- symbols (the signature) ----------
+   Stroke-only glyphs with round caps — PlayStation face-button
+   spirit — each floating on a soft halo of its own neon. */
+.vj-symbol {
+  display: inline-block;
+  flex: none;
+  vertical-align: middle;
+  fill: none;
+  stroke: var(--sym-c, currentColor);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  --glow-core: 55%;
+  --glow-halo: 26%;
+  filter: drop-shadow(0 0 2.5px color-mix(in srgb, var(--sym-c) var(--glow-core), transparent))
+    drop-shadow(0 0 9px color-mix(in srgb, var(--sym-c) var(--glow-halo), transparent));
+  transition: filter var(--dur-fast) var(--ease-out);
+}
+
+/* the glow leans in when its control is hovered or active */
+.vj-filter-tag:hover .vj-symbol,
+.vj-filter-tag[aria-pressed='true'] .vj-symbol,
+.vj-project-item:hover .vj-symbol,
+.vj-project-item.is-active .vj-symbol {
+  --glow-core: 90%;
+  --glow-halo: 45%;
+}
+
+/* ---------- rail ---------- */
+.vj-rail {
+  flex: 0 0 auto;
+  width: clamp(340px, 28vw, 470px);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  padding: var(--space-7) var(--space-6) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.vj-identity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.vj-wordmark {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.vj-wordmark .vj-wordmark-name {
+  font-family: var(--font-mono);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: var(--wordmark);
+  line-height: 1;
+  color: var(--white);
+}
+.vj-wordmark .vj-wordmark-role {
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  font-weight: var(--fw-regular);
+  color: var(--white-2);
+  line-height: 1.35;
+}
+
+.vj-about-link {
+  font-family: var(--font-sans);
+  font-style: italic;
+  font-size: var(--text-lg);
+  color: var(--white-2);
+  margin-top: var(--space-2);
+  align-self: flex-start;
+}
+.vj-about-link:hover {
+  color: var(--white);
+}
+.vj-about-link.is-active {
+  color: var(--white);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.vj-rail-header {
+  font-family: var(--font-mono);
+  font-weight: var(--fw-bold);
+  font-size: var(--display-3);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: var(--space-4);
+}
+
+/* filter / legend */
+.vj-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 var(--space-3);
+}
+
+.vj-filter-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  background: none;
+  border: none;
+  padding: 4px 0;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-regular);
+  color: var(--white);
+  -webkit-tap-highlight-color: transparent;
+}
+.vj-filter-tag .vj-filter-label {
+  border-bottom: 1.5px solid transparent;
+  padding-bottom: 1px;
+  opacity: 0.92;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out);
+}
+.vj-filter-tag:hover .vj-filter-label,
+.vj-filter-tag[aria-pressed='true'] .vj-filter-label {
+  border-color: var(--white);
+  opacity: 1;
+}
+
+.vj-filter-sep {
+  color: var(--white-3);
+  font-size: var(--text-lg);
+}
+
+/* project list */
+.vj-project-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.vj-project-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 2px 0;
+  opacity: 1;
+  transition: opacity var(--dur) var(--ease-out);
+}
+.vj-project-item.is-dimmed {
+  opacity: 0.28;
+}
+.vj-project-item .vj-project-label {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-regular);
+  color: var(--white);
+  line-height: 1.15;
+  white-space: nowrap;
+  border-bottom: 1.5px solid transparent;
+  padding-bottom: 1px;
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+.vj-project-item:hover .vj-project-label,
+.vj-project-item.is-active .vj-project-label {
+  border-color: var(--white);
+}
+.vj-project-item .vj-project-dash {
+  color: var(--white-3);
+  padding: 0 0.35em;
+}
+.vj-project-item .vj-project-syms {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex: none;
+}
+
+/* ---------- project frame ---------- */
+.vj-frame {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6) var(--space-7) var(--space-6);
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.vj-frame-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: none;
+}
+.vj-frame-header h1 {
+  font-size: var(--display-1);
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  text-transform: var(--title-case, none);
+}
+.vj-frame-header .vj-frame-desc {
+  margin: 0 auto;
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  line-height: 1.45;
+  color: var(--white-2);
+  max-width: 62ch;
+}
+
+.vj-collage {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.vj-tile {
+  position: relative;
+  min-height: 0;
+  min-width: 0;
+  background: var(--black-2);
+  overflow: hidden;
+  border-radius: var(--radius-xs);
+}
+.vj-tile img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* play affordance (film projects) */
+.vj-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.vj-play-ring {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: rgba(11, 11, 12, 0.32);
+  backdrop-filter: blur(2px);
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* typographic cover (projects with no supplied imagery) */
+.vj-textcover {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--black-2);
+  border-radius: var(--radius-xs);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  padding: 6% 8%;
+}
+.vj-textcover .vj-textcover-title {
+  font-family: var(--font-mono);
+  font-weight: var(--fw-bold);
+  font-size: clamp(2rem, 4.2vw, 4rem);
+  line-height: 1.04;
+  letter-spacing: 0.01em;
+  color: var(--white);
+  text-align: center;
+  text-transform: var(--title-case, none);
+}
+.vj-textcover .vj-play-ring {
+  width: 66px;
+  height: 66px;
+  flex: none;
+  background: rgba(11, 11, 12, 0.35);
+}
+
+/* stats + notes + press (info quadrant) */
+.vj-info {
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--space-3);
+  padding: 2px var(--space-5) var(--space-2) 0;
+  /* shrink stat figures + labels to fit the quadrant */
+  --figure: clamp(1.5rem, 2.1vw, 2.2rem);
+  --text-lg: 0.95rem;
+}
+
+.vj-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.vj-stat {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+.vj-stat .vj-stat-figure {
+  font-family: var(--font-sans);
+  font-size: var(--figure);
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--white);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.vj-stat .vj-stat-label {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-medium);
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.vj-notes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 44ch;
+}
+.vj-notes span {
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  color: var(--white-2);
+  line-height: 1.4;
+}
+
+.vj-press-grid {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  align-items: center;
+  gap: var(--space-3) var(--space-5);
+}
+.vj-press-grid img {
+  max-height: 24px;
+  max-width: 108px;
+  width: auto;
+  opacity: 0.85;
+}
+
+/* ---------- about ---------- */
+.vj-about {
+  height: 100vh;
+  overflow-y: auto;
+  padding: var(--space-8) var(--space-7);
+}
+.vj-about-intro {
+  max-width: 1000px;
+  margin-bottom: var(--space-8);
+}
+.vj-about h1 {
+  font-size: var(--display-1);
+  text-transform: none;
+  line-height: 1.06;
+  max-width: 18ch;
+}
+.vj-about .vj-accent {
+  color: var(--sym-film);
+}
+.vj-about-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-7);
+  max-width: 860px;
+  margin-top: var(--space-6);
+}
+.vj-about-cols p {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--white-2);
+}
+
+.vj-about-section {
+  border-top: 1px solid var(--line);
+  padding-top: var(--space-6);
+  margin-bottom: var(--space-7);
+}
+.vj-about-section .vj-rail-header {
+  margin-bottom: var(--space-5);
+}
+
+.vj-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-7);
+}
+.vj-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-sans);
+  font-size: var(--text-2xl);
+  font-weight: var(--fw-regular);
+  color: var(--white-2);
+  white-space: nowrap;
+}
+
+.vj-client-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+}
+.vj-client-row span {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  color: var(--white-2);
+}
+
+.vj-press-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-6) var(--space-7);
+}
+.vj-press-row img {
+  height: 24px;
+  width: auto;
+  opacity: 0.85;
+}
+
+.vj-about-cta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  align-items: flex-start;
+  padding-bottom: var(--space-8);
+}
+.vj-about-cta h2 {
+  font-size: var(--display-2);
+  text-transform: none;
+}
+
+/* button (About CTA) */
+.vj-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  font-size: var(--text-xs);
+  line-height: 1;
+  padding: 14px 22px;
+  border: 1px solid var(--white);
+  border-radius: var(--radius-xs);
+  background: var(--white);
+  color: var(--black-2);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+.vj-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+.vj-btn:active {
+  transform: scale(var(--press-scale));
+}
+.vj-btn .vj-btn-arrow {
+  display: inline-block;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.vj-btn:hover .vj-btn-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 820px) {
+  .vj-shell {
+    flex-direction: column;
+  }
+  .vj-rail {
+    flex: none;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    position: static;
+  }
+  .vj-frame {
+    height: auto;
+  }
+  .vj-collage {
+    min-height: 62vh;
+  }
+  .vj-about {
+    height: auto;
+  }
+}
+
+/* ---------- motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

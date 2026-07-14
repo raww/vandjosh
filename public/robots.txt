@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://raww.github.io/vandjosh/sitemap-index.xml

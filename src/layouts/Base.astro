@@ -1,0 +1,36 @@
+---
+// Base layout: fonts, tokens, SEO head, client router (view transitions),
+// and the shell (rail + main). Pages pass their SEO fields through.
+import '@fontsource/courier-prime/400.css';
+import '@fontsource/courier-prime/700.css';
+import '@fontsource-variable/hanken-grotesk';
+import '@fontsource-variable/hanken-grotesk/wght-italic.css';
+import '../styles/tokens.css';
+import '../styles/site.css';
+import { ClientRouter } from 'astro:transitions';
+import Seo from '../components/Seo.astro';
+import Rail from '../components/Rail.astro';
+
+const { title, description, ogType, jsonLd, view = 'project', activeId = null } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <Seo title={title} description={description} type={ogType} jsonLd={jsonLd} />
+    <ClientRouter />
+  </head>
+  <body data-view={view} data-active-id={activeId}>
+    <div class="vj-shell">
+      <Rail activeId={activeId} view={view} />
+      <main class="vj-main">
+        <slot />
+      </main>
+    </div>
+    <script>
+      import '../scripts/app.js';
+    </script>
+  </body>
+</html>

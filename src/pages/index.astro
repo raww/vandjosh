@@ -1,0 +1,28 @@
+---
+// Home: the first project's frame, exactly as the prototype opens.
+import Base from '../layouts/Base.astro';
+import ProjectFrame from '../components/ProjectFrame.astro';
+import { PROJECTS } from '../data/projects.js';
+import { SITE } from '../data/site.js';
+import { withBase } from '../lib/paths.js';
+
+const project = PROJECTS[0];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  description: SITE.description,
+  url: new URL(withBase('/'), Astro.site).href,
+  publisher: {
+    '@type': 'Organization',
+    name: SITE.name,
+    email: SITE.email,
+    url: new URL(withBase('/'), Astro.site).href,
+  },
+};
+---
+
+<Base view="project" activeId={project.id} jsonLd={jsonLd}>
+  <ProjectFrame project={project} />
+</Base>

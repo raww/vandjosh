@@ -1,0 +1,107 @@
+/* ============================================================
+   TOKENS — Vicky & Josh design system
+   Ported from the Claude Design project (colors / typography /
+   spacing / motion). Fonts are self-hosted via @fontsource,
+   imported in the base layout.
+   ============================================================ */
+:root {
+  /* --- canvas: near-black with a hint of warmth --- */
+  --black: #0b0b0c;
+  --black-2: #141416;
+  --black-3: #1e1e20;
+  --black-top: #17171a;
+
+  /* --- type on black --- */
+  --white: #ffffff;
+  --white-2: rgba(255, 255, 255, 0.72);
+  --white-3: rgba(255, 255, 255, 0.5);
+  --white-4: rgba(255, 255, 255, 0.3);
+
+  /* --- lines --- */
+  --line: rgba(255, 255, 255, 0.14);
+  --line-strong: #ffffff;
+
+  /* --- THE SYMBOL PALETTE — the brand's only colour --- */
+  --sym-film: #56e62b;
+  --sym-experiential: #f63fd8;
+  --sym-digital: #3c8cff;
+  --sym-b2b: #ffc220;
+  --sym-social: #33e6d4;
+
+  /* --- semantic aliases --- */
+  --bg: var(--black);
+  --surface-card: var(--black-2);
+  --surface-well: var(--black-3);
+  --text-strong: var(--white);
+  --text-body: var(--white-2);
+  --text-muted: var(--white-3);
+  --text-faint: var(--white-4);
+  --border-hairline: var(--line);
+  --border-rule: var(--line-strong);
+  --accent: var(--sym-film);
+  --on-accent: #06140a;
+  --focus-ring: var(--sym-film);
+
+  /* --- typography: typewriter (Copy) + grotesque (Art) --- */
+  --font-mono: 'Courier Prime', 'Courier New', ui-monospace, monospace;
+  --font-sans: 'Hanken Grotesk Variable', 'Hanken Grotesk', system-ui, 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  --display-1: clamp(2rem, 3vw, 2.9rem);
+  --display-2: clamp(1.6rem, 2.2vw, 2.1rem);
+  --display-3: clamp(1.15rem, 1.5vw, 1.45rem);
+  --wordmark: clamp(1.15rem, 1.4vw, 1.4rem);
+  --figure: clamp(2.1rem, 3.4vw, 3.4rem);
+
+  --text-2xl: 1.5rem;
+  --text-xl: 1.25rem;
+  --text-lg: 1.0625rem;
+  --text-md: 1rem;
+  --text-sm: 0.9375rem;
+  --text-xs: 0.8125rem;
+  --text-2xs: 0.6875rem;
+
+  --leading-flush: 1;
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-body: 1.5;
+  --leading-relaxed: 1.6;
+
+  --tracking-mono: 0.02em;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-label: 0.12em;
+  --tracking-wide: 0.2em;
+
+  /* project titles: fixed to sentence case (the shipped Tweaks default) */
+  --title-case: none;
+
+  /* --- spacing (4px base) --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* --- radii: near-square by design --- */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+
+  /* --- motion: restrained, no bounce --- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.66, 0, 0.34, 1);
+  --dur-fast: 160ms;
+  --dur: 320ms;
+  --dur-slow: 640ms;
+  --press-scale: 0.98;
+}

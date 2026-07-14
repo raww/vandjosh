@@ -1,0 +1,33 @@
+---
+// One pre-rendered page per project — real, shareable, crawlable URLs.
+// Pages, titles, descriptions and JSON-LD all derive from projects.js.
+import Base from '../../layouts/Base.astro';
+import ProjectFrame from '../../components/ProjectFrame.astro';
+import { PROJECTS } from '../../data/projects.js';
+import { SITE } from '../../data/site.js';
+import { truncate, withBase } from '../../lib/paths.js';
+
+export function getStaticPaths() {
+  return PROJECTS.map((project) => ({ params: { id: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props;
+
+const title = `${project.client} – ${project.title} — ${SITE.name}`;
+const description = truncate(project.description) || SITE.description;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: `${project.client} – ${project.title}`,
+  description: description,
+  creator: { '@type': 'Organization', name: SITE.name },
+  sponsor: { '@type': 'Organization', name: project.client },
+  ...(project.hero ? { image: new URL(withBase(project.hero), Astro.site).href } : {}),
+  url: new URL(withBase(`/work/${project.id}/`), Astro.site).href,
+};
+---
+
+<Base title={title} description={description} ogType="article" view="project" activeId={project.id} jsonLd={jsonLd}>
+  <ProjectFrame project={project} />
+</Base>

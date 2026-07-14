@@ -1,0 +1,80 @@
+---
+// About: studio statement, disciplines, clients, press wall, contact.
+import Base from '../layouts/Base.astro';
+import Symbol from '../components/Symbol.astro';
+import { DISCIPLINES, PRESS } from '../data/projects.js';
+import { SITE } from '../data/site.js';
+import { withBase } from '../lib/paths.js';
+
+const clients = ['Lenovo', 'Sprite', 'Ofcom', 'UCB', 'Nescafé', 'NHS', 'Lawn Tennis Association'];
+const pressWall = ['independent', 'times', 'guardian', 'dailymail', 'yahoo', 'metro', 'ladbible', 'people'];
+
+const title = `About — ${SITE.name}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE.name,
+  description: SITE.description,
+  email: SITE.email,
+  url: new URL(withBase('/'), Astro.site).href,
+  knowsAbout: DISCIPLINES,
+};
+---
+
+<Base title={title} view="about" jsonLd={jsonLd}>
+  <section class="vj-about">
+    <div class="vj-about-intro">
+      <div class="vj-rail-header">About</div>
+      <h1>Ideas that <span class="vj-accent">earn</span> their place in culture.</h1>
+      <div class="vj-about-cols">
+        <p>
+          We&rsquo;re Vicky and Josh &mdash; a senior creative team working across art direction and
+          copy. One of us makes it look good; the other makes it read right. Usually we argue about
+          which is which.
+        </p>
+        <p>
+          We build ideas big enough to earn their own headlines &mdash; films, stunts, products and
+          platforms that get talked about, shared and covered. From a global small-business platform
+          to an AI Queen, we like the ones people didn&rsquo;t see coming.
+        </p>
+      </div>
+    </div>
+
+    <div class="vj-about-section">
+      <div class="vj-rail-header">What we do</div>
+      <div class="vj-tag-row">
+        {
+          DISCIPLINES.map((d) => (
+            <span class="vj-tag">
+              {d}
+              <Symbol name={d} size={18} />
+            </span>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="vj-about-section">
+      <div class="vj-rail-header">Selected clients</div>
+      <div class="vj-client-row">
+        {clients.map((c) => <span>{c}</span>)}
+      </div>
+    </div>
+
+    <div class="vj-about-section">
+      <div class="vj-rail-header">As featured in</div>
+      <div class="vj-press-row">
+        {pressWall.map((key) => <img src={withBase(`assets/press/${PRESS[key]}`)} alt={key} loading="lazy" />)}
+      </div>
+    </div>
+
+    <div class="vj-about-cta">
+      <h2>Got something worth making?</h2>
+      <a class="vj-btn" href={`mailto:${SITE.email}`}>
+        {SITE.email}
+        <span class="vj-btn-arrow" aria-hidden="true">&#8599;</span>
+      </a>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,73 @@
+---
+// The persistent left rail: wordmark · About · FILTER legend · project list.
+// Filter dimming and ←/→ navigation are wired up in src/scripts/app.js via
+// the data-* attributes rendered here.
+import Symbol from './Symbol.astro';
+import { PROJECTS, DISCIPLINES } from '../data/projects.js';
+import { withBase } from '../lib/paths.js';
+
+const { activeId = null, view = 'project' } = Astro.props;
+---
+
+<aside class="vj-rail">
+  <div class="vj-identity">
+    <a href={withBase('/')} aria-label="Vicky & Josh — home">
+      <span class="vj-wordmark">
+        <span class="vj-wordmark-name">Vicky &amp; Josh</span>
+        <span class="vj-wordmark-role">Senior Creative Team<br />Art + Copy</span>
+      </span>
+    </a>
+    <a
+      class:list={['vj-about-link', { 'is-active': view === 'about' }]}
+      href={withBase('/about/')}
+      aria-current={view === 'about' ? 'page' : undefined}
+    >
+      About
+    </a>
+  </div>
+
+  <div>
+    <div class="vj-rail-header">Filter</div>
+    <div class="vj-filter-row">
+      {
+        DISCIPLINES.map((d, i) => (
+          <>
+            <button class="vj-filter-tag" type="button" data-filter={d} aria-pressed="false">
+              <span class="vj-filter-label">{d}</span>
+              <Symbol name={d} size={20} />
+            </button>
+            {i < DISCIPLINES.length - 1 && <span class="vj-filter-sep">|</span>}
+          </>
+        ))
+      }
+    </div>
+  </div>
+
+  <div>
+    <div class="vj-rail-header">Projects</div>
+    <nav class="vj-project-list" aria-label="Projects">
+      {
+        PROJECTS.map((p) => (
+          <a
+            class:list={['vj-project-item', { 'is-active': p.id === activeId && view === 'project' }]}
+            href={withBase(`/work/${p.id}/`)}
+            data-id={p.id}
+            data-disciplines={p.disciplines.join('|')}
+            aria-current={p.id === activeId && view === 'project' ? 'page' : undefined}
+          >
+            <span class="vj-project-label">
+              {p.client}
+              <span class="vj-project-dash">&ndash;</span>
+              {p.title}
+            </span>
+            <span class="vj-project-syms">
+              {p.disciplines.map((d) => (
+                <Symbol name={d} size={19} />
+              ))}
+            </span>
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</aside>
