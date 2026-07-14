@@ -53,7 +53,7 @@ export const PROJECTS = [
       adweek: 'https://www.adweek.com/brand-marketing/sprite-doubles-down-on-street-cred-to-win-over-gen-z/',
       fastcompany: 'https://www.fastcompany.com/91510415/sprite-rebrand-lymon',
       buzzfeed: 'https://www.buzzfeed.com/business-news/sprite-its-that-fresh-platform-oana-vlad',
-      wsj: 'https://www.wsj.com/cmo-today/cokes-sprite-takes-back-nba-sponsorship-from-pepsicos-starry-780a4d49',
+      // wsj logo shown unlinked: WSJ's Sprite coverage is the NBA deal, not FreshFest
     },
   },
   {
@@ -77,6 +77,8 @@ export const PROJECTS = [
       ladbible: 'https://www.ladbible.com/lifestyle/gen-z-online-and-offline-disconnect-lenovo-153586-20240526',
       dailymirror: 'https://www.mirror.co.uk/lifestyle/genz-living-double-life-online-32917902',
       thesun: 'https://www.thesun.co.uk/tech/28190474/gen-z-living-double-life/',
+      dailymail: 'https://www.dailymail.co.uk/health/article-13476113/Gen-Z-double-life-online-shocking-survey-secret-persona.html',
+      yahoo: 'https://finance.yahoo.com/news/lenovo-powers-ai-avatars-explore-174500712.html',
     },
   },
   {
@@ -109,6 +111,7 @@ export const PROJECTS = [
       guardian: 'https://www.theguardian.com/media/2022/jun/27/young-people-must-report-harmful-online-content-says-uk-watchdog',
       dailymail: 'https://www.dailymail.co.uk/news/article-10956397/TikTok-star-launches-OnlyNans-urging-young-users-report-offend-gran.html',
       eveningstandard: 'https://www.standard.co.uk/news/uk/tiktok-lewis-leigh-ofcom-campaign-harmful-content-online-b1008576.html',
+      times: 'https://www.thetimes.com/business/technology/article/tiktok-star-lewis-leigh-launches-only-nans-safe-internet-content-campaign-rsxk6zdsn',
       walesonline: 'https://www.walesonline.co.uk/news/wales-news/welsh-tiktok-star-onlynans-campaign-24341408',
     },
   },
