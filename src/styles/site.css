@@ -329,6 +329,13 @@ video {
   object-fit: contain;
 }
 
+/* press clipping shown whole, mounted on a white card */
+.vj-tile .vj-tile-media-card {
+  object-fit: contain;
+  background: #fff;
+  padding: 4%;
+}
+
 /* a feature tile that plays a film */
 button.vj-tile-playable {
   appearance: none;
@@ -510,6 +517,33 @@ button.vj-tile-playable {
   max-width: 108px;
   width: auto;
   opacity: 0.85;
+}
+.vj-press-link {
+  display: inline-flex;
+}
+.vj-press-link img {
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.vj-press-link:hover img,
+.vj-press-link:focus-visible img {
+  opacity: 1;
+}
+
+/* decorative sticker overlays on the feature tile (OnlyNans nans) */
+.vj-sticker {
+  position: absolute;
+  width: clamp(84px, 19%, 150px);
+  top: 50%;
+  pointer-events: none;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
+}
+.vj-sticker-left {
+  left: 4%;
+  transform: translateY(-50%) rotate(-5deg);
+}
+.vj-sticker-right {
+  right: 4%;
+  transform: translateY(-50%) rotate(4deg);
 }
 
 /* ---------- about ---------- */
@@ -733,6 +767,7 @@ button.vj-tile-playable {
     padding: var(--space-2) 0;
     --figure: 1.6rem;
     --text-lg: 0.95rem;
+    order: 99; /* stacked: all media first, results last */
   }
   .vj-quote {
     bottom: var(--space-3);

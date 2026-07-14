@@ -13,7 +13,11 @@ import { withBase } from '../lib/paths.js';
 
 const { project } = Astro.props;
 
-const media = [project.hero, ...(project.images || [])].filter(Boolean);
+// media entries are strings or { src, pos } (pos anchors the crop, e.g.
+// 'top' keeps a press clipping's headline in view)
+const media = [project.hero, ...(project.images || [])]
+  .filter(Boolean)
+  .map((m) => (typeof m === 'string' ? { src: m } : m));
 const n = media.length;
 const film = project.disciplines.includes('Film');
 const hasInfo =
@@ -21,7 +25,10 @@ const hasInfo =
   (project.press && project.press.length > 0) ||
   (project.notes && project.notes.length > 0);
 
-const press = (project.press || []).map((k) => PRESS[k]).filter(Boolean);
+// a press logo links out to the actual coverage when we have the URL
+const press = (project.press || [])
+  .filter((k) => PRESS[k])
+  .map((k) => ({ file: PRESS[k], url: (project.pressLinks || {})[k] }));
 const playable = Boolean(project.video || project.youtube);
 const showPlay = film || playable;
 
@@ -95,7 +102,7 @@ if (n === 0) {
 }
 
 const gridStyle = `grid-template-columns:${grid.cols};grid-template-rows:${grid.rows};grid-template-areas:${grid.areas};`;
-const isLoop = (src) => src.endsWith('.mp4');
+const isLoop = (m) => m.src.endsWith('.mp4');
 ---
 
 <section class="vj-frame">
@@ -120,16 +127,21 @@ const isLoop = (src) => src.endsWith('.mp4');
               aria-label={playsHere ? `Play the ${project.title} film` : undefined}
             >
               {isLoop(slot.src) ? (
-                <video class="vj-tile-media" src={withBase(slot.src)} autoplay muted loop playsinline preload="metadata" />
+                <video class="vj-tile-media" src={withBase(slot.src.src)} autoplay muted loop playsinline preload="metadata" />
               ) : (
                 <img
-                  class="vj-tile-media"
-                  src={withBase(slot.src)}
+                  class:list={['vj-tile-media', { 'vj-tile-media-card': slot.src.fit === 'contain' }]}
+                  src={withBase(slot.src.src)}
                   alt=""
+                  style={slot.src.pos ? `object-position:${slot.src.pos}` : undefined}
                   loading={feature ? 'eager' : 'lazy'}
                   fetchpriority={feature ? 'high' : undefined}
                 />
               )}
+              {feature &&
+                (project.stickers || []).map((s) => (
+                  <img class={`vj-sticker vj-sticker-${s.side}`} src={withBase(s.src)} alt="" />
+                ))}
               {feature && showPlay && (
                 <div class="vj-play">
                   <div class="vj-play-ring">
@@ -183,9 +195,15 @@ const isLoop = (src) => src.endsWith('.mp4');
             )}
             {press.length > 0 && (
               <div class="vj-press-grid">
-                {press.map((file) => (
-                  <img src={withBase(`assets/press/${file}`)} alt="" loading="lazy" />
-                ))}
+                {press.map(({ file, url }) =>
+                  url ? (
+                    <a href={url} target="_blank" rel="noopener" class="vj-press-link" aria-label="Read the coverage">
+                      <img src={withBase(`assets/press/${file}`)} alt="" loading="lazy" />
+                    </a>
+                  ) : (
+                    <img src={withBase(`assets/press/${file}`)} alt="" loading="lazy" />
+                  )
+                )}
               </div>
             )}
           </div>

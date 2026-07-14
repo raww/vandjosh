@@ -20,8 +20,16 @@ export const PROJECTS = [
       { figure: '240', label: 'Feature Stories' },
     ],
     hero: 'assets/imagery/eva-hero-w.jpg',
+    youtube: 'OvqD0lj0bkg', // "Lenovo Backing Every Business with Eva Longoria" (Lenovo)
     images: ['assets/imagery/eva-2-w.jpg', 'assets/imagery/eva-d-w.jpg'],
     press: ['independent', 'people', 'dailymail', 'aol', 'yahoo', 'bustle'],
+    pressLinks: {
+      independent: 'https://www.independent.co.uk/news/business/lenovo-eva-longoria-hollywood-american-japan-b2940219.html',
+      people: 'https://people.com/eva-longoria-credits-strong-women-for-her-success-exclusive-11936013',
+      aol: 'https://www.aol.com/articles/eva-longoria-says-growing-around-173606876.html',
+      yahoo: 'https://www.yahoo.com/entertainment/celebrity/articles/eva-longoria-says-growing-around-173606839.html',
+      bustle: 'https://www.bustle.com/entertainment/eva-longoria-mentoring-entrepreneurs-lenovo',
+    },
   },
   {
     id: 'sprite-freshfest',
@@ -40,6 +48,13 @@ export const PROJECTS = [
     video: 'assets/video/sprite-aftermovie.mp4',
     images: ['assets/imagery/sprite-e-w.jpg', 'assets/imagery/sprite-b-w.jpg'],
     press: ['complex', 'highsnobiety', 'adweek', 'fastcompany', 'buzzfeed', 'wsj'],
+    pressLinks: {
+      complex: 'https://www.complex.com/music/a/james-keith/sprite-freshfest-london-recap',
+      adweek: 'https://www.adweek.com/brand-marketing/sprite-doubles-down-on-street-cred-to-win-over-gen-z/',
+      fastcompany: 'https://www.fastcompany.com/91510415/sprite-rebrand-lymon',
+      buzzfeed: 'https://www.buzzfeed.com/business-news/sprite-its-that-fresh-platform-oana-vlad',
+      wsj: 'https://www.wsj.com/cmo-today/cokes-sprite-takes-back-nba-sponsorship-from-pepsicos-starry-780a4d49',
+    },
   },
   {
     id: 'digital-self',
@@ -58,6 +73,11 @@ export const PROJECTS = [
     video: 'assets/video/digitalself-case.mp4',
     images: ['assets/imagery/digitalself-hero-w.jpg'],
     press: ['ladbible', 'metro', 'dailymirror', 'thesun', 'dailymail', 'yahoo'],
+    pressLinks: {
+      ladbible: 'https://www.ladbible.com/lifestyle/gen-z-online-and-offline-disconnect-lenovo-153586-20240526',
+      dailymirror: 'https://www.mirror.co.uk/lifestyle/genz-living-double-life-online-32917902',
+      thesun: 'https://www.thesun.co.uk/tech/28190474/gen-z-living-double-life/',
+    },
   },
   {
     id: 'onlynans',
@@ -73,9 +93,24 @@ export const PROJECTS = [
       { figure: '50k', label: 'Budget' },
     ],
     hero: 'assets/imagery/onlynans-2-w.jpg',
-    images: ['assets/imagery/onlynans-d-w.jpg'],
+    // the deck hero's nan stickers, overlaid on the photo
+    stickers: [
+      { src: 'assets/imagery/onlynans-sticker-no.png', side: 'left' },
+      { src: 'assets/imagery/onlynans-sticker-fan.png', side: 'right' },
+    ],
+    // press clippings anchor to their headline (pos: 'top')
+    images: [
+      { src: 'assets/imagery/onlynans-standard-w.jpg', pos: 'top' },
+      { src: 'assets/imagery/onlynans-guardian-w.jpg', fit: 'contain' },
+    ],
     quote: { text: 'Some outstandingly funny copywriting', source: 'Creative Hits of the Week' },
     press: ['guardian', 'dailymail', 'eveningstandard', 'times', 'walesonline'],
+    pressLinks: {
+      guardian: 'https://www.theguardian.com/media/2022/jun/27/young-people-must-report-harmful-online-content-says-uk-watchdog',
+      dailymail: 'https://www.dailymail.co.uk/news/article-10956397/TikTok-star-launches-OnlyNans-urging-young-users-report-offend-gran.html',
+      eveningstandard: 'https://www.standard.co.uk/news/uk/tiktok-lewis-leigh-ofcom-campaign-harmful-content-online-b1008576.html',
+      walesonline: 'https://www.walesonline.co.uk/news/wales-news/welsh-tiktok-star-onlynans-campaign-24341408',
+    },
   },
   {
     id: 'remotest-office',
@@ -94,6 +129,15 @@ export const PROJECTS = [
     hero: 'assets/imagery/crusoe-2-w.jpg',
     images: ['assets/imagery/crusoe-e-w.jpg', 'assets/imagery/crusoe-a-w.jpg'],
     press: ['techradar', 'fastcompany', 'larepubblica', 'vanityfair', 'forbes', 'cnn'],
+    pressLinks: {
+      techradar: 'https://www.techradar.com/news/lenovo-may-have-solved-the-wfh-problem-for-good',
+      fastcompany: 'https://www.fastcompany.com/90806247/the-future-of-the-workplace-is-changing-and-so-are-the-tools-to-support-it',
+      larepubblica: 'https://www.repubblica.it/tecnologia/2022/05/18/news/lavorare_dallisola_di_robinson_crusoe_abbiamo_intervistato_i_volontari_lenovo-350067736/',
+      vanityfair: 'https://www.vanityfair.it/article/smart-working-isola-robinson-crusoe',
+      forbes: 'https://www.forbes.com/sites/carolinamilanesi/2022/06/27/what-lenovos-work-for-humankind-initiative-says-about-hybrid-work-and-community-impact/',
+      // original CNN sponsor page is offline; archived copy
+      cnn: 'https://web.archive.org/web/20250323144143/https://sponsorcontent.cnn.com/interactive/LenovoIntel/Workforhumankind/',
+    },
   },
   {
     id: 'winnie-pooh',
@@ -159,6 +203,11 @@ export const PROJECTS = [
     video: 'assets/video/queenofsmall-case.mp4',
     images: [],
     press: ['bet', 'people', 'fortune'],
+    pressLinks: {
+      bet: 'https://www.bet.com/article/w4cqcy/queen-latifah-partners-with-lenovo-for-evolve-small-campaign-to-support-small-business-owners',
+      people: 'https://people.com/queen-latifah-creating-ai-versions-of-herself-exclusive-8404973',
+      fortune: 'https://fortune.com/2023/12/28/queen-latifah-explains-why-monetizing-digital-avatar-image-control-ai-nervousness/',
+    },
   },
   {
     id: 'level-up',
