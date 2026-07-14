@@ -30,6 +30,30 @@ document.addEventListener('click', (e) => {
   applyFilter();
 });
 
+// Playable feature tiles: first click swaps the still for the film —
+// a self-hosted <video> (data-video) or a YouTube embed (data-youtube).
+document.addEventListener('click', (e) => {
+  const tile = e.target instanceof Element && e.target.closest('.vj-tile-playable');
+  if (!tile || tile.dataset.playing) return;
+  tile.dataset.playing = 'true';
+  let player;
+  if (tile.dataset.video) {
+    player = document.createElement('video');
+    player.src = tile.dataset.video;
+    player.controls = true;
+    player.autoplay = true;
+    player.playsInline = true;
+  } else {
+    player = document.createElement('iframe');
+    player.src = `https://www.youtube-nocookie.com/embed/${tile.dataset.youtube}?autoplay=1&rel=0`;
+    player.allow = 'autoplay; fullscreen; encrypted-media; picture-in-picture';
+    player.allowFullscreen = true;
+    player.title = tile.getAttribute('aria-label') || 'Film';
+  }
+  player.className = 'vj-tile-player';
+  tile.replaceChildren(player);
+});
+
 document.addEventListener('keydown', (e) => {
   if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
   if (document.body.dataset.view !== 'project') return;

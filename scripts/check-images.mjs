@@ -10,7 +10,7 @@ const publicDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'public');
 const missing = [];
 
 for (const project of PROJECTS) {
-  for (const path of [project.hero, ...(project.images || [])].filter(Boolean)) {
+  for (const path of [project.hero, project.video, ...(project.images || [])].filter(Boolean)) {
     if (!existsSync(join(publicDir, path))) missing.push(`${project.id}: ${path}`);
   }
   for (const key of project.press || []) {

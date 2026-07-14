@@ -1,8 +1,13 @@
 ---
 // One project fills one frame: centred title + description, then an
 // asymmetric collage whose arrangement depends on how much media and
-// info (stats / notes / press) the project has. Ported 1:1 from the
-// prototype's ProjectFrame.jsx.
+// info (stats / notes / press) the project has.
+//
+// Media entries ending in .mp4 render as muted looping film moments.
+// A project with `video` (self-hosted mp4) or `youtube` (video id) gets a
+// real play affordance on its feature tile — clicking swaps in the player
+// (wired up in src/scripts/app.js). An optional `quote` renders as the
+// white serif press-quote band across the feature tile.
 import { PRESS } from '../data/projects.js';
 import { withBase } from '../lib/paths.js';
 
@@ -17,11 +22,13 @@ const hasInfo =
   (project.notes && project.notes.length > 0);
 
 const press = (project.press || []).map((k) => PRESS[k]).filter(Boolean);
+const playable = Boolean(project.video || project.youtube);
+const showPlay = film || playable;
 
 // choose a collage arrangement: grid template + which slots render
 const [feat, b, c] = media;
 let grid;
-let slots; // ordered list of { kind: 'tile' | 'info' | 'cover', src?, area, film? }
+let slots; // ordered list of { kind: 'tile' | 'info' | 'cover', src?, area, feature? }
 
 if (n === 0) {
   if (hasInfo) {
@@ -34,10 +41,16 @@ if (n === 0) {
     grid = { cols: '1fr', rows: '1fr', areas: `"feat"` };
     slots = [{ kind: 'cover', area: 'feat' }];
   }
+} else if (n >= 4 && !hasInfo) {
+  // uniform gallery (the deck's 3×2 LTA grid): two columns, row per pair
+  const rows = Math.ceil(n / 2);
+  const areas = Array.from({ length: rows }, (_, r) => `"m${r * 2} m${Math.min(r * 2 + 1, n - 1)}"`).join(' ');
+  grid = { cols: '1fr 1fr', rows: `repeat(${rows}, 1fr)`, areas };
+  slots = media.map((src, i) => ({ kind: 'tile', src, area: `m${i}`, feature: i === 0 }));
 } else if (n >= 3 && hasInfo) {
   grid = { cols: '1.35fr 1fr', rows: '1fr 1fr', areas: `"feat side1" "info side2"` };
   slots = [
-    { kind: 'tile', src: feat, film, area: 'feat' },
+    { kind: 'tile', src: feat, area: 'feat', feature: true },
     { kind: 'tile', src: b, area: 'side1' },
     { kind: 'info', area: 'info' },
     { kind: 'tile', src: c, area: 'side2' },
@@ -45,35 +58,44 @@ if (n === 0) {
 } else if (n === 2 && hasInfo) {
   grid = { cols: '1.35fr 1fr', rows: '1fr 1fr', areas: `"feat side1" "info side1"` };
   slots = [
-    { kind: 'tile', src: feat, film, area: 'feat' },
+    { kind: 'tile', src: feat, area: 'feat', feature: true },
     { kind: 'tile', src: b, area: 'side1' },
     { kind: 'info', area: 'info' },
+  ];
+} else if (n === 1 && hasInfo && playable) {
+  // film-led project (the deck's Nescafé / Queen of Small pages):
+  // wide player on top, stats + press centred beneath
+  grid = { cols: '1fr', rows: '1.7fr auto', areas: `"feat" "info"` };
+  slots = [
+    { kind: 'tile', src: feat, area: 'feat', feature: true },
+    { kind: 'info', area: 'info', below: true },
   ];
 } else if (n === 1 && hasInfo) {
   grid = { cols: '1fr 1.4fr', rows: '1fr', areas: `"info feat"` };
   slots = [
     { kind: 'info', area: 'info' },
-    { kind: 'tile', src: feat, film, area: 'feat' },
+    { kind: 'tile', src: feat, area: 'feat', feature: true },
   ];
 } else if (n >= 3) {
   grid = { cols: '1.4fr 1fr', rows: '1fr 1fr', areas: `"feat side1" "feat side2"` };
   slots = [
-    { kind: 'tile', src: feat, film, area: 'feat' },
+    { kind: 'tile', src: feat, area: 'feat', feature: true },
     { kind: 'tile', src: b, area: 'side1' },
     { kind: 'tile', src: c, area: 'side2' },
   ];
 } else if (n === 2) {
   grid = { cols: '1.2fr 1fr', rows: '1fr', areas: `"feat side1"` };
   slots = [
-    { kind: 'tile', src: feat, film, area: 'feat' },
+    { kind: 'tile', src: feat, area: 'feat', feature: true },
     { kind: 'tile', src: b, area: 'side1' },
   ];
 } else {
   grid = { cols: '1fr', rows: '1fr', areas: `"feat"` };
-  slots = [{ kind: 'tile', src: feat, film, area: 'feat' }];
+  slots = [{ kind: 'tile', src: feat, area: 'feat', feature: true }];
 }
 
 const gridStyle = `grid-template-columns:${grid.cols};grid-template-rows:${grid.rows};grid-template-areas:${grid.areas};`;
+const isLoop = (src) => src.endsWith('.mp4');
 ---
 
 <section class="vj-frame">
@@ -86,17 +108,29 @@ const gridStyle = `grid-template-columns:${grid.cols};grid-template-rows:${grid.
     {
       slots.map((slot) => {
         if (slot.kind === 'tile') {
+          const feature = slot.feature;
+          const playsHere = feature && playable;
+          const Tile = playsHere ? 'button' : 'div';
           return (
-            <div class="vj-tile" style={`grid-area:${slot.area}`}>
-              {slot.src && (
+            <Tile
+              class:list={['vj-tile', { 'vj-tile-playable': playsHere }]}
+              style={`grid-area:${slot.area}`}
+              data-video={playsHere && project.video ? withBase(project.video) : undefined}
+              data-youtube={playsHere ? project.youtube : undefined}
+              aria-label={playsHere ? `Play the ${project.title} film` : undefined}
+            >
+              {isLoop(slot.src) ? (
+                <video class="vj-tile-media" src={withBase(slot.src)} autoplay muted loop playsinline preload="metadata" />
+              ) : (
                 <img
+                  class="vj-tile-media"
                   src={withBase(slot.src)}
                   alt=""
-                  loading={slot.area === 'feat' ? 'eager' : 'lazy'}
-                  fetchpriority={slot.area === 'feat' ? 'high' : undefined}
+                  loading={feature ? 'eager' : 'lazy'}
+                  fetchpriority={feature ? 'high' : undefined}
                 />
               )}
-              {slot.film && (
+              {feature && showPlay && (
                 <div class="vj-play">
                   <div class="vj-play-ring">
                     <svg width="26" height="30" viewBox="0 0 26 30" aria-hidden="true">
@@ -105,14 +139,20 @@ const gridStyle = `grid-template-columns:${grid.cols};grid-template-rows:${grid.
                   </div>
                 </div>
               )}
-            </div>
+              {feature && project.quote && (
+                <figure class="vj-quote">
+                  <blockquote>&lsquo;{project.quote.text}&rsquo;</blockquote>
+                  <figcaption>&mdash; {project.quote.source}</figcaption>
+                </figure>
+              )}
+            </Tile>
           );
         }
         if (slot.kind === 'cover') {
           return (
             <div class="vj-textcover" style={`grid-area:${slot.area}`}>
               <span class="vj-textcover-title">{project.title}</span>
-              {film && (
+              {showPlay && (
                 <div class="vj-play-ring">
                   <svg width="22" height="26" viewBox="0 0 26 30" aria-hidden="true">
                     <path d="M2 2 L24 15 L2 28 Z" fill="#fff" />
@@ -123,7 +163,7 @@ const gridStyle = `grid-template-columns:${grid.cols};grid-template-rows:${grid.
           );
         }
         return (
-          <div class="vj-info" style={`grid-area:${slot.area}`}>
+          <div class:list={['vj-info', { 'vj-info-below': slot.below }]} style={`grid-area:${slot.area}`}>
             {project.stats && project.stats.length > 0 && (
               <div class="vj-stats">
                 {project.stats.map((s) => (

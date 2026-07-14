@@ -38,10 +38,19 @@ entry, meta tags and JSON-LD are all generated from it. To add a project:
      stats: [{ figure: '53k', label: 'Website Visits' }],   // optional
      notes: ['Extra one-liners under the stats'],           // optional
      hero: 'assets/imagery/client-hero.jpg',                // null → typographic cover
-     images: ['assets/imagery/client-a.jpg'],               // up to 2 more
+     images: ['assets/imagery/client-a.jpg'],               // more media; .mp4 = muted loop
+     video: 'assets/video/client-case.mp4',                 // optional: film played on click
+     youtube: 'dQw4w9WgXcQ',                                // optional: YouTube id instead of video
+     quote: { text: 'A press quote', source: 'Outlet' },    // optional: white serif band on hero
      press: ['guardian', 'metro'],                          // keys from the PRESS map
    }
    ```
+
+   Media notes: entries ending `.mp4` in `images`/`hero` render as muted looping
+   film moments (convert gifs with ffmpeg — tiny files, same effect). A `video`
+   or `youtube` field puts a play button on the feature tile; clicking swaps in
+   the player. Compress films to ~720p H.264 (`ffmpeg -vf scale=1280:-2 -crf 26
+   -preset slow -movflags +faststart`) — keep them ≲20 MB.
 
 3. `npm run check` to confirm the image paths, then commit and push — the site
    rebuilds and deploys on push to `main`.

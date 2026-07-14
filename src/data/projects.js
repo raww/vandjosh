@@ -37,8 +37,9 @@ export const PROJECTS = [
       { figure: '100%', label: 'Message Pull Through' },
     ],
     hero: 'assets/imagery/sprite-a-w.jpg',
+    video: 'assets/video/sprite-aftermovie.mp4',
     images: ['assets/imagery/sprite-e-w.jpg', 'assets/imagery/sprite-b-w.jpg'],
-    press: [],
+    press: ['complex', 'highsnobiety', 'adweek', 'fastcompany', 'buzzfeed', 'wsj'],
   },
   {
     id: 'digital-self',
@@ -54,6 +55,7 @@ export const PROJECTS = [
       { figure: '58%', label: 'Increase to Shout Website' },
     ],
     hero: 'assets/imagery/digitalself-a-w.jpg',
+    video: 'assets/video/digitalself-case.mp4',
     images: ['assets/imagery/digitalself-hero-w.jpg'],
     press: ['ladbible', 'metro', 'dailymirror', 'thesun', 'dailymail', 'yahoo'],
   },
@@ -72,7 +74,8 @@ export const PROJECTS = [
     ],
     hero: 'assets/imagery/onlynans-2-w.jpg',
     images: ['assets/imagery/onlynans-d-w.jpg'],
-    press: ['guardian', 'times', 'dailymail'],
+    quote: { text: 'Some outstandingly funny copywriting', source: 'Creative Hits of the Week' },
+    press: ['guardian', 'dailymail', 'eveningstandard', 'times', 'walesonline'],
   },
   {
     id: 'remotest-office',
@@ -86,11 +89,11 @@ export const PROJECTS = [
       { figure: '5,000', label: 'Entries Worldwide' },
       { figure: '1,000', label: 'Volunteer Hours' },
       { figure: '200x', label: 'Faster Internet' },
-      { figure: '17', label: 'Endangered Statuses Improved' },
+      { figure: '17', label: 'Critically Endangered Statuses Improved' },
     ],
     hero: 'assets/imagery/crusoe-2-w.jpg',
     images: ['assets/imagery/crusoe-e-w.jpg', 'assets/imagery/crusoe-a-w.jpg'],
-    press: [],
+    press: ['techradar', 'fastcompany', 'larepubblica', 'vanityfair', 'forbes', 'cnn'],
   },
   {
     id: 'winnie-pooh',
@@ -102,7 +105,7 @@ export const PROJECTS = [
       'UCB is a Canadian pharma company that supports people with MG; a neurological disease that affects speech, movement and brainpower. Christopher Robin had this disease. So, for the 100-year anniversary of the original story we made a special edition giving pooh these symptoms.',
     stats: [],
     hero: 'assets/imagery/ucb-hero-w.jpg',
-    images: ['assets/imagery/ucb-b-w.jpg'],
+    images: ['assets/imagery/ucb-b-w.jpg', 'assets/imagery/ucb-flatlay-w.jpg'],
     press: [],
   },
   {
@@ -134,7 +137,8 @@ export const PROJECTS = [
       'Generated more positive comments than any other previous Nescafé campaign',
       'Nescafé’s most successful campaign (at the time)',
     ],
-    hero: null,
+    hero: 'assets/imagery/nescafe-hero.jpg',
+    youtube: 'ls0UVO_mJt0', // Nescafé Gold "Those Few People" (Publicis Worldwide)
     images: [],
     press: [],
   },
@@ -151,9 +155,10 @@ export const PROJECTS = [
       { figure: '450M', label: 'Reach' },
       { figure: '+4%', label: 'Brand Awareness' },
     ],
-    hero: null,
+    hero: 'assets/imagery/queenofsmall-hero-w.jpg',
+    video: 'assets/video/queenofsmall-case.mp4',
     images: [],
-    press: [],
+    press: ['bet', 'people', 'fortune'],
   },
   {
     id: 'level-up',
@@ -164,8 +169,16 @@ export const PROJECTS = [
     description:
       'We encouraged young people from all backgrounds to play tennis…not just those who grew up on strawberries and cream. We did this by showcasing all the different superpowers kids can gain from playing tennis: epic concentration, incredible balance, and super speed.',
     stats: [],
-    hero: 'assets/imagery/lta-hero.gif',
-    images: ['assets/imagery/lta-a.gif', 'assets/imagery/lta-b.gif'],
+    // six looping film moments, arranged like the deck's 3×2 grid
+    hero: 'assets/imagery/lta-loop-5.mp4',
+    video: 'assets/video/lta-levelup.mp4',
+    images: [
+      'assets/imagery/lta-loop-10.mp4',
+      'assets/imagery/lta-loop-LM3.mp4',
+      'assets/imagery/lta-loop-3.mp4',
+      'assets/imagery/lta-loop-LM6.mp4',
+      'assets/imagery/lta-loop-LM1.mp4',
+    ],
     press: [],
   },
 ];
@@ -173,20 +186,33 @@ export const PROJECTS = [
 // Filter row / legend order (matches the deck).
 export const DISCIPLINES = ['Film', 'Experiential', 'Digital', 'B2B', 'Social good'];
 
-// Press-logo filenames (white-on-transparent) in public/assets/press/.
+// Press-logo filenames (white-on-transparent or white-on-black) in public/assets/press/.
 export const PRESS = {
+  adweek: 'adweek.png',
   aol: 'aol.png',
+  bet: 'bet.png',
   bustle: 'bustle.avif',
+  buzzfeed: 'buzzfeed.png',
   cnn: 'cnn.webp',
+  complex: 'complex.png',
   dailymail: 'dailymail.png',
   dailymirror: 'dailymirror.webp',
+  eveningstandard: 'eveningstandard.png',
+  fastcompany: 'fastcompany.png',
   forbes: 'forbes.png',
+  fortune: 'fortune.png',
   guardian: 'guardian.png',
+  highsnobiety: 'highsnobiety.png',
   independent: 'independent.png',
   ladbible: 'ladbible.png',
+  larepubblica: 'larepubblica.png',
   metro: 'metro.png',
   people: 'people.png',
+  techradar: 'techradar.png',
   thesun: 'thesun.png',
   times: 'times.png',
+  vanityfair: 'vanityfair.png',
+  walesonline: 'walesonline.png',
+  wsj: 'wsj.png',
   yahoo: 'yahoo.webp',
 };
