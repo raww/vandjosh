@@ -19,9 +19,14 @@ export const PROJECTS = [
       { figure: '295', label: 'Earned Pieces' },
       { figure: '240', label: 'Features' },
     ],
-    hero: 'assets/imagery/eva-hero-w.jpg',
+    // focal points are the detected face centres — object-position maps that
+    // point of the image to the same point of the tile, so faces survive any crop
+    hero: { src: 'assets/imagery/eva-hero-w.jpg', pos: '50% 29%' },
     youtube: 'OvqD0lj0bkg', // "Lenovo Backing Every Business with Eva Longoria" (Lenovo)
-    images: ['assets/imagery/eva-2-w.jpg', 'assets/imagery/eva-d-w.jpg'],
+    images: [
+      { src: 'assets/imagery/eva-2-w.jpg', pos: '44% 16%' },
+      { src: 'assets/imagery/eva-d-w.jpg', pos: '50% 17%' },
+    ],
     press: ['independent', 'people', 'dailymail', 'aol', 'yahoo', 'bustle'],
     pressLinks: {
       independent: 'https://www.independent.co.uk/news/business/lenovo-eva-longoria-hollywood-american-japan-b2940219.html',
@@ -45,7 +50,10 @@ export const PROJECTS = [
     ],
     hero: 'assets/imagery/sprite-a-w.jpg',
     video: 'assets/video/sprite-aftermovie.mp4',
-    images: ['assets/imagery/sprite-e-w.jpg', 'assets/imagery/sprite-b-w.jpg'],
+    images: [
+      { src: 'assets/imagery/sprite-e-w.jpg', pos: '71% 36%' },
+      { src: 'assets/imagery/sprite-b-w.jpg', pos: '50% 20%' },
+    ],
     press: ['complex', 'highsnobiety', 'adweek', 'fastcompany', 'buzzfeed', 'wsj'],
     pressLinks: {
       complex: 'https://www.complex.com/music/a/james-keith/sprite-freshfest-london-recap',
@@ -67,9 +75,11 @@ export const PROJECTS = [
       { figure: '58%', label: 'Web Increase Traffic' },
       { figure: '200', label: 'Global Pieces of coverage' },
     ],
-    hero: 'assets/imagery/digitalself-a-w.jpg',
+    // focal points are the detected face centres — object-position maps that
+    // point of the image to the same point of the tile, so faces survive any crop
+    hero: { src: 'assets/imagery/digitalself-a-w.jpg', pos: '25% 50%' },
     video: 'assets/video/digitalself-case.mp4',
-    images: ['assets/imagery/digitalself-hero-w.jpg'],
+    images: [{ src: 'assets/imagery/digitalself-hero-w.jpg', pos: '44% 50%' }],
     press: ['ladbible', 'metro', 'dailymirror', 'thesun', 'dailymail', 'yahoo'],
     pressLinks: {
       ladbible: 'https://www.ladbible.com/lifestyle/gen-z-online-and-offline-disconnect-lenovo-153586-20240526',
@@ -92,7 +102,9 @@ export const PROJECTS = [
       { figure: '45', label: 'Tier 1 Pieces' },
       { figure: '6', label: 'Award Wins' },
     ],
-    hero: 'assets/imagery/onlynans-2-w.jpg',
+    // focal points are the detected face centres — object-position maps that
+    // point of the image to the same point of the tile, so faces survive any crop
+    hero: { src: 'assets/imagery/onlynans-2-w.jpg', pos: '54% 27%' },
     // the deck hero's nan stickers, overlaid on the photo
     stickers: [
       { src: 'assets/imagery/onlynans-sticker-no.png', side: 'left' },
@@ -100,7 +112,9 @@ export const PROJECTS = [
     ],
     // press clippings anchor to their headline (pos: 'top')
     images: [
-      { src: 'assets/imagery/onlynans-standard-w.jpg', pos: 'top' },
+      // press clippings are shown whole on a white card, as the deck sets them —
+      // cropping this one either loses the headline or the faces beneath it
+      { src: 'assets/imagery/onlynans-standard-w.jpg', fit: 'contain' },
       { src: 'assets/imagery/onlynans-guardian-w.jpg', fit: 'contain' },
     ],
     quote: { text: 'Some outstandingly funny copywriting', source: 'Creative Hits of the Week' },
@@ -126,7 +140,10 @@ export const PROJECTS = [
       { figure: '200x', label: 'faster internet' },
     ],
     hero: 'assets/imagery/crusoe-2-w.jpg',
-    images: ['assets/imagery/crusoe-e-w.jpg', 'assets/imagery/crusoe-a-w.jpg'],
+    images: [
+      { src: 'assets/imagery/crusoe-e-w.jpg', pos: '18% 59%' },
+      'assets/imagery/crusoe-a-w.jpg',
+    ],
     press: ['techradar', 'fastcompany', 'larepubblica', 'vanityfair', 'forbes', 'cnn'],
     pressLinks: {
       techradar: 'https://www.techradar.com/news/lenovo-may-have-solved-the-wfh-problem-for-good',
@@ -182,7 +199,9 @@ export const PROJECTS = [
       { figure: '4%', label: 'Sales Uplift' },
       { figure: '1018%', label: 'Increased web traffic' },
     ],
-    hero: 'assets/imagery/nescafe-hero.jpg',
+    // focal points are the detected face centres — object-position maps that
+    // point of the image to the same point of the tile, so faces survive any crop
+    hero: { src: 'assets/imagery/nescafe-hero.jpg', pos: '72% 50%' },
     youtube: 'ls0UVO_mJt0', // Nescafé Gold "Those Few People" (Publicis Worldwide)
     images: [],
     press: [],
@@ -199,7 +218,9 @@ export const PROJECTS = [
       { figure: '450M', label: 'Reach' },
       { figure: '$80M', label: 'Cost without AI' },
     ],
-    hero: 'assets/imagery/queenofsmall-hero-w.jpg',
+    // focal points are the detected face centres — object-position maps that
+    // point of the image to the same point of the tile, so faces survive any crop
+    hero: { src: 'assets/imagery/queenofsmall-hero-w.jpg', pos: '51% 50%' },
     video: 'assets/video/queenofsmall-case.mp4',
     images: [],
     press: ['bet', 'people', 'fortune'],

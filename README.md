@@ -35,16 +35,32 @@ entry, meta tags and JSON-LD are all generated from it. To add a project:
      title: 'Campaign Title',
      disciplines: ['Film'],        // any of: Film, Experiential, Digital, B2B, Social good
      description: 'One short paragraph. Also becomes the page’s meta description.',
-     stats: [{ figure: '53k', label: 'Website Visits' }],   // optional
-     notes: ['Extra one-liners under the stats'],           // optional
-     hero: 'assets/imagery/client-hero.jpg',                // null → typographic cover
+     stats: [{ figure: '53k', label: 'Website Visits' }],   // optional; set inline as one line
+     hero: 'assets/imagery/client-hero.jpg',                // string, or { src, pos, fit }
      images: ['assets/imagery/client-a.jpg'],               // more media; .mp4 = muted loop
      video: 'assets/video/client-case.mp4',                 // optional: film played on click
      youtube: 'dQw4w9WgXcQ',                                // optional: YouTube id instead of video
-     quote: { text: 'A press quote', source: 'Outlet' },    // optional: white serif band on hero
+     quote: { text: 'A press quote', source: 'Outlet' },    // optional: clipping card in the lower row
      press: ['guardian', 'metro'],                          // keys from the PRESS map
    }
    ```
+
+   **Focal points.** Tiles crop with `object-fit: cover`, so any photo with a face
+   in it needs a `pos` — an `object-position` value that keeps the face in frame:
+
+   ```js
+   hero: { src: 'assets/imagery/client-hero.jpg', pos: '51% 30%' },
+   images: [{ src: 'assets/imagery/client-a.jpg', fit: 'contain' }],  // clippings, diagrams
+   ```
+
+   `pos` is not simply the face's centre. With `cover`, the anchor `p%` maps the
+   image's `p%` point onto the tile's `p%` point, so the usable range depends on
+   how hard the tile crops. Pick the midpoint of the range that keeps the face
+   visible at every tile aspect the layout produces (roughly 0.2–3.7 today) —
+   `docs/focal-points.md` records the values in use and how they were derived.
+   Photos with no face (landscapes, crowds, the Crusoe seal) can stay bare
+   strings. Press clippings and diagrams want `fit: 'contain'`, which shows them
+   whole on a white card and needs no `pos`.
 
    Media notes: entries ending `.mp4` in `images`/`hero` render as muted looping
    film moments (convert gifs with ffmpeg — tiny files, same effect). A `video`
@@ -55,9 +71,9 @@ entry, meta tags and JSON-LD are all generated from it. To add a project:
 3. `npm run check` to confirm the image paths, then commit and push — the site
    rebuilds and deploys on push to `main`.
 
-The collage layout adapts automatically to how much media/info the entry has
-(see `src/components/ProjectFrame.astro`). Projects with `hero: null` get the
-typographic cover, like Nescafé and Queen of Small.
+The layout adapts to how much media the entry has (see
+`src/components/ProjectFrame.astro`): the first one or two tiles sit above the
+press band and the rest below it. Every project currently supplies a hero.
 
 New press outlet? Add the white-on-transparent logo to `public/assets/press/`
 and one line to the `PRESS` map.
