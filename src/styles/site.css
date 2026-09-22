@@ -115,15 +115,15 @@ video {
 /* ---------- rail ---------- */
 .vj-rail {
   flex: 0 0 auto;
-  width: clamp(340px, 28vw, 470px);
+  width: clamp(330px, 34vw, 540px);
   height: 100vh;
   position: sticky;
   top: 0;
   overflow-y: auto;
-  padding: var(--space-7) var(--space-6) var(--space-6);
+  padding: var(--space-6) var(--space-5) var(--space-5);
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: clamp(20px, 2.6vw, 38px);
 }
 
 .vj-identity {
@@ -142,13 +142,13 @@ video {
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  font-size: var(--wordmark);
+  font-size: clamp(0.95rem, 1.15vw, 1.25rem);
   line-height: 1;
   color: var(--white);
 }
 .vj-wordmark .vj-wordmark-role {
   font-family: var(--font-sans);
-  font-size: var(--text-md);
+  font-size: clamp(0.82rem, 0.98vw, 1.05rem);
   font-weight: var(--fw-regular);
   color: var(--white-2);
   line-height: 1.35;
@@ -157,7 +157,7 @@ video {
 .vj-about-link {
   font-family: var(--font-sans);
   font-style: italic;
-  font-size: var(--text-lg);
+  font-size: clamp(0.82rem, 0.98vw, 1.05rem);
   color: var(--white-2);
   margin-top: var(--space-2);
   align-self: flex-start;
@@ -174,11 +174,11 @@ video {
 .vj-rail-header {
   font-family: var(--font-mono);
   font-weight: var(--fw-bold);
-  font-size: var(--display-3);
-  letter-spacing: 0.03em;
+  font-size: clamp(0.72rem, 0.84vw, 0.9rem);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--white);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
 }
 
 /* filter / legend */
@@ -186,7 +186,7 @@ video {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0 var(--space-3);
+  gap: 0 clamp(4px, 0.6vw, 9px);
 }
 
 .vj-filter-tag {
@@ -198,7 +198,7 @@ video {
   padding: 4px 0;
   cursor: pointer;
   font-family: var(--font-sans);
-  font-size: var(--text-lg);
+  font-size: clamp(0.76rem, 0.9vw, 0.98rem);
   font-weight: var(--fw-regular);
   color: var(--white);
   -webkit-tap-highlight-color: transparent;
@@ -219,14 +219,14 @@ video {
 
 .vj-filter-sep {
   color: var(--white-3);
-  font-size: var(--text-lg);
+  font-size: clamp(0.76rem, 0.9vw, 0.98rem);
 }
 
 /* project list */
 .vj-project-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: clamp(9px, 1.1vw, 16px);
 }
 
 .vj-project-item {
@@ -244,7 +244,7 @@ video {
   display: inline-flex;
   align-items: center;
   font-family: var(--font-sans);
-  font-size: var(--text-lg);
+  font-size: clamp(0.8rem, 0.95vw, 1.02rem);
   font-weight: var(--fw-regular);
   color: var(--white);
   line-height: 1.15;
@@ -279,32 +279,70 @@ video {
 }
 
 .vj-frame-header {
-  text-align: center;
+  flex: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: var(--space-4) clamp(24px, 3.5vw, 64px);
+  align-items: start;
+  text-align: left;
+}
+.vj-frame-id {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  flex: none;
+  min-width: 0;
 }
-.vj-frame-header h1 {
-  font-size: var(--display-1);
+.vj-frame-line {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: var(--fw-bold);
+  font-size: clamp(0.85rem, 1.05vw, 1.1rem);
+  line-height: 1.42;
   letter-spacing: 0.01em;
-  line-height: 1.05;
+  color: var(--white);
   text-transform: var(--title-case, none);
 }
-.vj-frame-header .vj-frame-desc {
-  margin: 0 auto;
+.vj-figures {
+  margin: 0.9em 0 0;
   font-family: var(--font-sans);
-  font-size: var(--text-lg);
-  line-height: 1.45;
-  color: var(--white-2);
-  max-width: 62ch;
+  font-size: clamp(0.7rem, 0.82vw, 0.875rem);
+  font-weight: var(--fw-medium);
+  color: var(--white);
+  line-height: 1.35;
+}
+.vj-figures .vj-figures-sep {
+  color: var(--white-3);
+  padding: 0 0.45em;
+}
+.vj-frame-header .vj-frame-desc {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(0.72rem, 0.86vw, 0.95rem);
+  line-height: 1.5;
+  color: var(--white);
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* media rows, split by the press band */
+.vj-frame-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .vj-collage {
-  flex: 1;
   min-height: 0;
   display: grid;
-  gap: 12px;
+  gap: 10px;
+  grid-auto-rows: minmax(0, 1fr);
+}
+.vj-collage-top {
+  flex: 1.45 1 0;
+}
+.vj-collage-rest {
+  flex: 1 1 0;
 }
 
 .vj-tile {
@@ -351,33 +389,32 @@ button.vj-tile-playable {
   transition: transform var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
 }
 .vj-tile-playable:hover .vj-play-ring {
-  transform: scale(1.06);
-  background: rgba(11, 11, 12, 0.5);
+  transform: scale(1.08);
 }
 
-/* press-quote band — white serif caption across the feature tile */
+/* press quote, set as its own clipping card in the lower row */
 .vj-quote {
-  position: absolute;
-  left: 0;
-  bottom: var(--space-5);
   margin: 0;
-  max-width: min(78%, 52ch);
+  min-width: 0;
+  overflow: hidden;
   background: var(--white);
   color: var(--black);
-  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-xs);
+  padding: var(--space-4) var(--space-5);
   font-family: var(--font-serif);
-  line-height: 1.35;
+  line-height: 1.3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .vj-quote blockquote {
   margin: 0;
-  display: inline;
-  font-size: var(--text-lg);
+  font-size: clamp(0.9rem, 1.15vw, 1.3rem);
   font-weight: var(--fw-bold);
 }
 .vj-quote figcaption {
-  display: inline;
-  margin-left: 0.4em;
-  font-size: var(--text-sm);
+  margin-top: 0.5em;
+  font-size: clamp(0.72rem, 0.85vw, 0.95rem);
   color: rgba(11, 11, 12, 0.72);
 }
 
@@ -391,15 +428,14 @@ button.vj-tile-playable {
   pointer-events: none;
 }
 .vj-play-ring {
-  width: 76px;
-  height: 76px;
-  border-radius: 50%;
-  background: rgba(11, 11, 12, 0.32);
-  backdrop-filter: blur(2px);
-  border: 2px solid rgba(255, 255, 255, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.6));
+}
+.vj-play-ring svg {
+  width: clamp(34px, 3.6vw, 62px);
+  height: auto;
 }
 
 /* typographic cover (projects with no supplied imagery) */
@@ -433,117 +469,57 @@ button.vj-tile-playable {
   background: rgba(11, 11, 12, 0.35);
 }
 
-/* stats + notes + press (info quadrant) */
-.vj-info {
-  min-height: 0;
-  min-width: 0;
-  overflow: hidden;
+/* press logos, set as a full-width band between the media rows */
+.vj-pressband {
+  flex: none;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: var(--space-3);
-  padding: 2px var(--space-5) var(--space-2) 0;
-  /* shrink stat figures + labels to fit the quadrant */
-  --figure: clamp(1.5rem, 2.1vw, 2.2rem);
-  --text-lg: 0.95rem;
-}
-
-/* info sitting BELOW a wide player (film-led projects): centred row */
-.vj-info-below {
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: var(--space-4) var(--space-8);
-  padding: var(--space-2) 0 0;
-  overflow: visible;
-  --figure: clamp(1.7rem, 2.4vw, 2.4rem);
-  --text-lg: 1rem;
-}
-.vj-info-below .vj-press-grid {
-  align-self: center;
-}
-
-.vj-stats {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.vj-stat {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-3);
-}
-.vj-stat .vj-stat-figure {
-  font-family: var(--font-sans);
-  font-size: var(--figure);
-  font-weight: var(--fw-bold);
-  line-height: 1;
-  letter-spacing: var(--tracking-tight);
-  color: var(--white);
-  font-variant-numeric: lining-nums tabular-nums;
-}
-.vj-stat .vj-stat-label {
-  font-family: var(--font-sans);
-  font-size: var(--text-lg);
-  font-weight: var(--fw-medium);
-  color: var(--white);
-  line-height: 1.2;
-}
-
-.vj-notes {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  max-width: 44ch;
-}
-.vj-notes span {
-  font-family: var(--font-sans);
-  font-size: var(--text-md);
-  color: var(--white-2);
-  line-height: 1.4;
-}
-
-.vj-press-grid {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  justify-content: start;
   align-items: center;
-  gap: var(--space-3) var(--space-5);
+  gap: clamp(10px, 1.6vw, 36px);
+  padding: 2px 0;
+  min-width: 0;
 }
-.vj-press-grid img {
-  max-height: 24px;
-  max-width: 108px;
+/* each masthead gets an equal slot and is centred in it, so a square logo
+   sits as comfortably as a wide one */
+.vj-pressband > * {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vj-pressband img {
+  display: block;
+  max-height: clamp(20px, 2.6vw, 40px);
+  max-width: 100%;
   width: auto;
-  opacity: 0.85;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.92;
+  transition: opacity var(--dur-fast) var(--ease-out);
 }
 .vj-press-link {
-  display: inline-flex;
-}
-.vj-press-link img {
-  transition: opacity var(--dur-fast) var(--ease-out);
+  display: flex;
+  min-width: 0;
 }
 .vj-press-link:hover img,
 .vj-press-link:focus-visible img {
   opacity: 1;
 }
 
-/* decorative sticker overlays on the feature tile (OnlyNans nans) */
-.vj-sticker {
-  position: absolute;
-  width: clamp(84px, 19%, 150px);
-  top: 50%;
-  pointer-events: none;
+/* sticker column beside the hero (the OnlyNans nans) */
+.vj-stickers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  width: clamp(92px, 11vw, 170px);
+  min-height: 0;
+}
+.vj-stickers .vj-sticker {
+  width: 100%;
+  min-height: 0;
+  object-fit: contain;
   filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
-}
-.vj-sticker-left {
-  left: 4%;
-  transform: translateY(-50%) rotate(-5deg);
-}
-.vj-sticker-right {
-  right: 4%;
-  transform: translateY(-50%) rotate(4deg);
 }
 
 /* ---------- about ---------- */
@@ -685,24 +661,28 @@ button.vj-tile-playable {
 /* narrow desktop: rail + frame still side by side, so shrink both */
 @media (min-width: 821px) and (max-width: 1150px) {
   .vj-rail {
-    width: clamp(300px, 30vw, 360px);
+    width: clamp(300px, 32vw, 380px);
     padding: var(--space-6) var(--space-5);
+  }
+  .vj-project-item .vj-project-label {
+    font-size: 0.86rem;
+  }
+  .vj-filter-tag,
+  .vj-filter-sep {
+    font-size: 0.8rem;
   }
   .vj-frame {
     padding: var(--space-5);
     gap: var(--space-3);
   }
-  .vj-info {
-    --figure: clamp(1.2rem, 2vw, 1.8rem);
-    --text-lg: 0.85rem;
-    gap: var(--space-2);
+  .vj-pressband {
+    gap: var(--space-3);
   }
-  .vj-press-grid {
-    gap: var(--space-2) var(--space-3);
+  .vj-pressband img {
+    max-height: 24px;
   }
-  .vj-press-grid img {
-    max-height: 18px;
-    max-width: 84px;
+  .vj-stickers {
+    width: clamp(70px, 9vw, 110px);
   }
 }
 
@@ -712,20 +692,14 @@ button.vj-tile-playable {
     padding: var(--space-4) var(--space-5);
     gap: var(--space-3);
   }
-  .vj-frame-header .vj-frame-desc {
-    font-size: 0.95rem;
+  .vj-frame-body {
+    gap: 8px;
   }
-  .vj-info {
-    --figure: clamp(1.2rem, 2.4vh, 1.9rem);
-    --text-lg: 0.85rem;
-    gap: var(--space-2);
+  .vj-collage {
+    gap: 8px;
   }
-  .vj-press-grid {
-    gap: var(--space-2) var(--space-3);
-  }
-  .vj-press-grid img {
-    max-height: 18px;
-    max-width: 88px;
+  .vj-pressband img {
+    max-height: clamp(16px, 3vh, 26px);
   }
 }
 
@@ -762,17 +736,49 @@ button.vj-tile-playable {
     aspect-ratio: 16 / 10;
     width: 100%;
   }
-  .vj-info {
-    overflow: visible;
-    padding: var(--space-2) 0;
-    --figure: 1.6rem;
-    --text-lg: 0.95rem;
-    order: 99; /* stacked: all media first, results last */
+  .vj-frame-header {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+  .vj-frame-header .vj-frame-desc {
+    text-align: left;
+  }
+  .vj-frame-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .vj-collage-top,
+  .vj-collage-rest {
+    flex: none;
+  }
+  /* the band wraps onto as many rows as it needs, logos left-aligned */
+  .vj-pressband {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: var(--space-3) var(--space-5);
+    order: 99; /* stacked: media first, coverage last */
+  }
+  .vj-pressband > * {
+    flex: 0 0 auto;
+  }
+  .vj-pressband img {
+    max-height: 22px;
+  }
+  /* stickers sit as a row under the hero rather than a column beside it */
+  .vj-stickers {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  .vj-stickers .vj-sticker {
+    width: auto;
+    max-width: 40%;
+    max-height: 140px;
   }
   .vj-quote {
-    bottom: var(--space-3);
-    max-width: 94%;
-    padding: var(--space-2) var(--space-3);
+    aspect-ratio: auto;
+    padding: var(--space-4);
   }
   .vj-quote blockquote {
     font-size: var(--text-md);
