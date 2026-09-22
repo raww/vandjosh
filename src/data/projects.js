@@ -3,7 +3,7 @@
 // file. To add a project, append an object here and drop its images in
 // public/assets/imagery/ — see README "Adding a new project".
 //
-// Copy is transcribed verbatim from the studio deck (VJ(3)new.pdf).
+// Copy is transcribed verbatim from the studio deck (webupdate22.26.pdf).
 
 export const PROJECTS = [
   {
@@ -13,11 +13,11 @@ export const PROJECTS = [
     title: 'Backing Every Business',
     disciplines: ['B2B', 'Film'],
     description:
-      'After 4 years of working on Lenovo’s successful small business initiative in North America, we were tasked in taking it global. The line “Backing Every Business” was born and we launched with expert entrepreneur, Eva Longoria.',
+      'After 4 years of leading the creative on Lenovo’s successful small business initiative in North America, we were tasked in taking it global. The line “Backing Every Business” was launched by expert entrepreneur, Eva Longoria (she said our writing was “hilarious.”)',
     stats: [
-      { figure: '53k', label: 'Website Visits' },
-      { figure: '295', label: 'Earned Coverage' },
-      { figure: '240', label: 'Feature Stories' },
+      { figure: '53k', label: 'Website Hits' },
+      { figure: '295', label: 'Earned Pieces' },
+      { figure: '240', label: 'Features' },
     ],
     hero: 'assets/imagery/eva-hero-w.jpg',
     youtube: 'OvqD0lj0bkg', // "Lenovo Backing Every Business with Eva Longoria" (Lenovo)
@@ -38,11 +38,10 @@ export const PROJECTS = [
     title: 'FreshFest',
     disciplines: ['Experiential'],
     description:
-      'Launching Sprite’s new global branding with a street-inspired event featuring Crenshaw, Little Sims, NBA players and Michelin chefs.',
+      'Launched Sprite’s new global branding with a street-inspired event. Vicky took the reigns as art director extraordinaire working with multiple partners to build a mini-Notting Hill Carnival featuring Crenshaw clothing, Little Sims, NBA players and Michelin chefs.',
     stats: [
-      { figure: '3.75M', label: 'Social Views' },
-      { figure: '1,178', label: 'Earned Placements' },
-      { figure: '100%', label: 'Message Pull Through' },
+      { figure: '1,178', label: 'Earned Pieces' },
+      { figure: '100%', label: 'Positive sentiment' },
     ],
     hero: 'assets/imagery/sprite-a-w.jpg',
     video: 'assets/video/sprite-aftermovie.mp4',
@@ -63,11 +62,10 @@ export const PROJECTS = [
     title: 'Meet Your Digital Self',
     disciplines: ['Experiential', 'Film'],
     description:
-      'In a world-first, 2 young people brought their online worlds to life. Family members were then invited to chat to these digital avatars, learning more about this hidden side of them.',
+      '2 young people brought their online worlds to life. Family members then chatted to these digital avatars in real-time, discovering more about this hidden side of them. At the time, it was the first ever avatar that could respond in real-time.',
     stats: [
-      { figure: '2000', label: 'Pieces Global Coverage' },
-      { figure: '1st', label: 'Real Time AI Avatar' },
-      { figure: '58%', label: 'Increase to Shout Website' },
+      { figure: '58%', label: 'Web Increase Traffic' },
+      { figure: '200', label: 'Global Pieces of coverage' },
     ],
     hero: 'assets/imagery/digitalself-a-w.jpg',
     video: 'assets/video/digitalself-case.mp4',
@@ -88,11 +86,11 @@ export const PROJECTS = [
     title: 'OnlyNans',
     disciplines: ['Social good', 'Digital'],
     description:
-      'Teens don’t report harmful content. They’re Desensitized to it. So, we called in the big guns. OnlyNans saw famous Tiktoker Lewis Leigh show his gran the good, bad and ugly of social media…after all if you wouldn’t show your gran, then you should probably report it.',
+      'Teens don’t report harmful content. They’re Desensitized to it. So, we called in the big guns. OnlyNans saw famous TikToker, Lewis Leigh, show his gran the good, bad and ugly of social media…after all if you wouldn’t show your gran, you should probably report it.',
     stats: [
-      { figure: '5', label: 'Award Wins' },
-      { figure: '45', label: 'Pieces of Tier 1 Coverage' },
       { figure: '50k', label: 'Budget' },
+      { figure: '45', label: 'Tier 1 Pieces' },
+      { figure: '6', label: 'Award Wins' },
     ],
     hero: 'assets/imagery/onlynans-2-w.jpg',
     // the deck hero's nan stickers, overlaid on the photo
@@ -122,12 +120,10 @@ export const PROJECTS = [
     title: 'Remotest Office in the World',
     disciplines: ['Social good', 'Experiential', 'Digital'],
     description:
-      'To prove Lenovo’s tech could handle working remotely post-pandemic, we invited volunteers to do their day jobs from the infamous Robinson Crusoe Island. In their free time volunteers used their unique skills to upskill this previously disconnected community and help endangered wildlife.',
+      'To prove Lenovo’s tech could handle working remotely post-pandemic, we invited volunteers to do their day jobs from the infamous Robinson Crusoe Island. In their free time they supported the community and wildlife.',
     stats: [
-      { figure: '5,000', label: 'Entries Worldwide' },
-      { figure: '1,000', label: 'Volunteer Hours' },
-      { figure: '200x', label: 'Faster Internet' },
-      { figure: '17', label: 'Critically Endangered Statuses Improved' },
+      { figure: '17', label: 'critically endangered statuses improved' },
+      { figure: '200x', label: 'faster internet' },
     ],
     hero: 'assets/imagery/crusoe-2-w.jpg',
     images: ['assets/imagery/crusoe-e-w.jpg', 'assets/imagery/crusoe-a-w.jpg'],
@@ -145,15 +141,16 @@ export const PROJECTS = [
   {
     id: 'winnie-pooh',
     index: '06',
-    client: 'UCB',
-    title: 'Winnie-the-Pooh',
+    client: 'UCB Canada',
+    title: 'Winnie-The-Pooh',
     disciplines: ['Social good'],
     description:
-      'UCB is a Canadian pharma company that supports people with MG; a neurological disease that affects speech, movement and brainpower. Christopher Robin had this disease. So, for the 100-year anniversary of the original story we made a special edition giving pooh these symptoms.',
-    stats: [],
+      'Myasthenia Gravis is a neurological disorder like motor-neurons. Christopher Robin had this disease. For the 100-year anniversary we made a special edition giving Pooh MG symptoms. It was the best piece of work the client has ever done (their words, not ours) and covered across Canadian TV.',
+    stats: [{ figure: '79x', label: 'more coverage than the industry benchmark' }],
     hero: 'assets/imagery/ucb-hero-w.jpg',
     images: ['assets/imagery/ucb-b-w.jpg', 'assets/imagery/ucb-flatlay-w.jpg'],
-    press: [],
+    // logos lifted from the deck page — Canadian broadcast + trade coverage
+    press: ['ctv', 'globalnews', 'cbc', 'littleblackbook'],
   },
   {
     id: 'mysurgery',
@@ -161,11 +158,16 @@ export const PROJECTS = [
     client: 'NHS',
     title: 'MySurgery',
     disciplines: ['Social good', 'Digital'],
-    // No dedicated copy in the deck — shown with its supplied imagery only.
-    description: '',
+    description:
+      'Vicky co-founded a small business that’s now used in 3 NHS Trusts, MySurgery helps patients understand their surgeries and the associated risks using animated videos and personalized consent forms. And for clinicians it’s peace of mind: a signed consent for is not legally binding evidence of informed consent',
     stats: [],
-    hero: 'assets/imagery/mysurgery-c-w.jpg',
-    images: ['assets/imagery/mysurgery-b-w.jpg', 'assets/imagery/mysurgery-a-w.jpg'],
+    // product/diagram panels: shown whole on white, as the deck sets them.
+    // The one-pager is the deck's own left panel, lifted from webupdate22.26.pdf.
+    hero: { src: 'assets/imagery/mysurgery-onepager-w.jpg', fit: 'contain' },
+    images: [
+      { src: 'assets/imagery/mysurgery-b-w.jpg', fit: 'contain' },
+      { src: 'assets/imagery/mysurgery-c-w.jpg', fit: 'contain' },
+    ],
     press: [],
   },
   {
@@ -175,14 +177,10 @@ export const PROJECTS = [
     title: 'Those Few People',
     disciplines: ['Film'],
     description:
-      'An amphitheatre filled with 80,000 people; everyone this lad has ever met. But only a few of them are truly special. Only a few get to sit and have coffee with him.',
+      'An amphitheater filled with 80,000 people; everyone this lad has ever met. But only a few of them are truly special. Only a few get to sit and have coffee with him. With a global TV spot and 50 bespoke YouTube pre-rolls Nescafé generated more positive comments than any other previous campaign.',
     stats: [
-      { figure: '1018%', label: 'Increased Website Visits' },
-      { figure: '+4%', label: 'Brand Sales Growth' },
-    ],
-    notes: [
-      'Generated more positive comments than any other previous Nescafé campaign',
-      'Nescafé’s most successful campaign (at the time)',
+      { figure: '4%', label: 'Sales Uplift' },
+      { figure: '1018%', label: 'Increased web traffic' },
     ],
     hero: 'assets/imagery/nescafe-hero.jpg',
     youtube: 'ls0UVO_mJt0', // Nescafé Gold "Those Few People" (Publicis Worldwide)
@@ -198,9 +196,8 @@ export const PROJECTS = [
     description:
       'We spent time. And Money. And tears. All to make an AI Queen Latifah so any small business could get a shout out from her. A-list endorsement in seconds. Then, about 5 minutes later the AI boom made this easy as pie. Ahead of our time…that’s for others to say.',
     stats: [
-      { figure: '$80M', label: 'Cost of Assets Without AI' },
       { figure: '450M', label: 'Reach' },
-      { figure: '+4%', label: 'Brand Awareness' },
+      { figure: '$80M', label: 'Cost without AI' },
     ],
     hero: 'assets/imagery/queenofsmall-hero-w.jpg',
     video: 'assets/video/queenofsmall-case.mp4',
@@ -267,4 +264,9 @@ export const PRESS = {
   walesonline: 'walesonline.png',
   wsj: 'wsj.png',
   yahoo: 'yahoo.webp',
+  // Canadian coverage for UCB, extracted from the deck
+  cbc: 'cbc.png',
+  ctv: 'ctv.png',
+  globalnews: 'globalnews.png',
+  littleblackbook: 'littleblackbook.png',
 };
