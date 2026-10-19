@@ -56,9 +56,15 @@ const { activeId = null, view = 'project' } = Astro.props;
             aria-current={p.id === activeId && view === 'project' ? 'page' : undefined}
           >
             <span class="vj-project-label">
-              {p.client}
-              <span class="vj-project-dash">&ndash;</span>
-              {p.title}
+              {p.listName ? (
+                p.listName
+              ) : (
+                <>
+                  {p.client}
+                  <span class="vj-project-dash">&ndash;</span>
+                  {p.title}
+                </>
+              )}
             </span>
             <span class="vj-project-syms">
               {p.disciplines.map((d) => (

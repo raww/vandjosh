@@ -1,12 +1,11 @@
 # Focal points
 
 Project tiles crop with `object-fit: cover`, and the same photo is cropped to
-very different shapes depending on the viewport — today's layout puts tiles
-anywhere between roughly 0.2:1 and 3.7:1. Without a focal point the default
-`50% 50%` centre crop decapitates people in the wide tiles.
+very different shapes depending on the viewport. Without a focal point the
+default `50% 50%` centre crop decapitates people in the wider tiles.
 
-Each photo with a face therefore carries a `pos` in `src/data/projects.js`,
-which becomes its `object-position`.
+Each photo with a face carries a `pos` in `src/data/projects.js`, which becomes
+its `object-position`.
 
 ## Why the anchor is not the face's centre
 
@@ -25,9 +24,7 @@ p/100 ≥ (hi·s − C) / O        and        p/100 ≤ (lo·s) / O
 
 Intersecting those bounds over every container the layout produces gives a
 feasible range per axis; the value in use is its **midpoint**, which leaves the
-most slack in both directions. Where the range is empty the face is physically
-larger than the crop band and no anchor can save it — the midpoint still
-minimises what is lost.
+most slack in both directions.
 
 ## How these were derived
 
@@ -42,33 +39,32 @@ minimises what is lost.
 Where a photo holds more than one face, the anchor covers all of them when they
 fit. When they cannot (faces at opposite edges), it falls back to the subject —
 **the most central of the top-scoring faces**, not the largest, because the
-largest is often a blurred foreground repeat (Queen of Small) rather than the
-person the shot is about.
+largest is often a blurred foreground repeat rather than the person the shot is
+about.
 
 ## Values in use
 
 | Image | Natural | Tile aspects | Faces held | `pos` |
 | --- | --- | --- | --- | --- |
-| `crusoe-e-w.jpg` | 960×1440 | 0.36–1.60 | 1 of 2 | `18% 59%` |
-| `digitalself-a-w.jpg` | 1440×960 | 0.31–1.60 | 1 of 2 | `25% 50%` |
-| `digitalself-hero-w.jpg` | 1440×811 | 0.21–1.60 | 1 of 1 | `44% 50%` |
-| `eva-2-w.jpg` | 960×1440 | 0.36–1.60 | 1 of 1 | `44% 16%` |
-| `eva-d-w.jpg` | 960×1440 | 1.32–3.68 | 1 of 1 | `50% 17%` |
-| `eva-hero-w.jpg` | 1080×1440 | 0.54–1.60 | 1 of 1 | `50% 29%` |
-| `nescafe-hero.jpg` | 1280×480 | 0.52–1.60 | 1 of 1 | `72% 50%` |
-| `onlynans-2-w.jpg` | 1600×905 | 0.75–2.18 | 2 of 2 | `54% 27%` |
-| `queenofsmall-hero-w.jpg` | 1280×720 | 0.54–1.60 | 1 of 2 | `51% 50%` |
-| `sprite-b-w.jpg` | 1440×960 | 1.32–3.68 | 1 of 1 | `50% 20%` |
-| `sprite-e-w.jpg` | 960×1440 | 0.36–1.60 | 1 of 2 | `71% 36%` |
+| `digitalself-orange-w.jpg` | 1048×604 | 0.45–1.60 | 1 of 1 | `36% 50%` |
+| `digitalself-pair-w.jpg` | 1600×1067 | 0.48–1.60 | 1 of 1 | `77% 50%` |
+| `digitalself-rig-w.jpg` | 1518×1013 | 0.48–1.60 | 1 of 1 | `38% 50%` |
+| `eva-desk-w.jpg` | 1600×1067 | 0.67–1.90 | 1 of 1 | `44% 50%` |
+| `eva-red-w.jpg` | 1200×1600 | 0.45–1.60 | 1 of 1 | `50% 29%` |
+| `eva-seated-w.jpg` | 1600×1067 | 0.97–2.73 | 1 of 1 | `50% 41%` |
+| `nescafe-still-w.jpg` | 1600×895 | 0.59–1.60 | 1 of 1 | `77% 50%` |
+| `onlynans-hero-w.jpg` | 1600×905 | 0.95–2.64 | 2 of 2 | `55% 16%` |
+| `queenofsmall-still-w.jpg` | 1600×717 | 0.61–1.69 | 1 of 4 | `34% 50%` |
+| `sprite-djs-w.jpg` | 1000×1500 | 0.31–1.60 | 1 of 2 | `75% 36%` |
+| `sprite-menu-w.jpg` | 1600×1067 | 0.31–1.60 | 1 of 1 | `63% 50%` |
 
-Photos with no detected face — `sprite-a-w.jpg` (a dark crowd), `crusoe-2-w.jpg`
-(landscape), `crusoe-a-w.jpg` (a seal) and the UCB book shots — stay bare
-strings and centre-crop as before. Press clippings and the MySurgery panels use
-`fit: 'contain'`, so they are shown whole and need no anchor.
+Photos with no detected face — the Sprite stage and crowd frames, the Crusoe
+landscapes, the UCB book shots — stay bare strings and centre-crop as before.
+Press clippings and the MySurgery panels use `fit: 'contain'`, so they are shown
+whole and need no anchor.
 
-### Known limits
-
-`eva-d-w.jpg` and `nescafe-hero.jpg` have faces larger than the crop band at the
-most extreme tile aspect, so at the very widest viewports the face fills the
-tile edge to edge. Both are anchored to lose as little as possible. Fixing them
-properly means a differently-framed source photo, not a different anchor.
+Since the imagery now comes from the deck itself, every anchor currently has a
+feasible range: the two cases that could not be solved before (`eva-d-w.jpg`,
+`nescafe-hero.jpg`) were artefacts of crops the deck does not use. The deck's
+own 16:9 Nescafé still replaced a 2.67:1 letterboxed crop whose face was larger
+than the crop band at any anchor.

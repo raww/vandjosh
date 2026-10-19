@@ -36,6 +36,7 @@ entry, meta tags and JSON-LD are all generated from it. To add a project:
      disciplines: ['Film'],        // any of: Film, Experiential, Digital, B2B, Social good
      description: 'One short paragraph. Also becomes the page’s meta description.',
      stats: [{ figure: '53k', label: 'Website Visits' }],   // optional; set inline as one line
+     listName: 'Client – Campaign',                         // optional: rail label, if the deck differs
      hero: 'assets/imagery/client-hero.jpg',                // string, or { src, pos, fit }
      images: ['assets/imagery/client-a.jpg'],               // more media; .mp4 = muted loop
      video: 'assets/video/client-case.mp4',                 // optional: film played on click
@@ -58,6 +59,8 @@ entry, meta tags and JSON-LD are all generated from it. To add a project:
    how hard the tile crops. Pick the midpoint of the range that keeps the face
    visible at every tile aspect the layout produces (roughly 0.2–3.7 today) —
    `docs/focal-points.md` records the values in use and how they were derived.
+   An image the deck places rotated must be rotated in the asset itself —
+   `object-position` cannot rotate.
    Photos with no face (landscapes, crowds, the Crusoe seal) can stay bare
    strings. Press clippings and diagrams want `fit: 'contain'`, which shows them
    whole on a white card and needs no `pos`.

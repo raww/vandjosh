@@ -19,15 +19,12 @@ export const PROJECTS = [
       { figure: '295', label: 'Earned Pieces' },
       { figure: '240', label: 'Features' },
     ],
-    // focal points are the detected face centres — object-position maps that
-    // point of the image to the same point of the tile, so faces survive any crop
-    hero: { src: 'assets/imagery/eva-hero-w.jpg', pos: '50% 29%' },
+    // imagery and running order taken from the deck page itself
+    // (focal points derived in docs/focal-points.md)
+    hero: { src: 'assets/imagery/eva-desk-w.jpg', pos: '44% 50%' },
     youtube: 'OvqD0lj0bkg', // "Lenovo Backing Every Business with Eva Longoria" (Lenovo)
-    images: [
-      { src: 'assets/imagery/eva-2-w.jpg', pos: '44% 16%' },
-      { src: 'assets/imagery/eva-d-w.jpg', pos: '50% 17%' },
-    ],
-    press: ['independent', 'people', 'dailymail', 'aol', 'yahoo', 'bustle'],
+    images: [{ src: 'assets/imagery/eva-red-w.jpg', pos: '50% 29%' }, { src: 'assets/imagery/eva-seated-w.jpg', pos: '50% 41%' }],
+    press: ['yahoo', 'dailymail', 'bustle', 'people', 'independent', 'aol'],
     pressLinks: {
       independent: 'https://www.independent.co.uk/news/business/lenovo-eva-longoria-hollywood-american-japan-b2940219.html',
       people: 'https://people.com/eva-longoria-credits-strong-women-for-her-success-exclusive-11936013',
@@ -48,13 +45,17 @@ export const PROJECTS = [
       { figure: '1,178', label: 'Earned Pieces' },
       { figure: '100%', label: 'Positive sentiment' },
     ],
-    hero: 'assets/imagery/sprite-a-w.jpg',
+    // imagery and running order taken from the deck page itself
+    // (focal points derived in docs/focal-points.md)
+    hero: 'assets/imagery/sprite-stage-w.jpg',
     video: 'assets/video/sprite-aftermovie.mp4',
     images: [
-      { src: 'assets/imagery/sprite-e-w.jpg', pos: '71% 36%' },
-      { src: 'assets/imagery/sprite-b-w.jpg', pos: '50% 20%' },
+      'assets/imagery/sprite-crowd-w.jpg',
+      { src: 'assets/imagery/sprite-djs-w.jpg', pos: '75% 36%' },
+      { src: 'assets/imagery/sprite-menu-w.jpg', pos: '63% 50%' },
+      'assets/imagery/sprite-dunk-w.jpg',
     ],
-    press: ['complex', 'highsnobiety', 'adweek', 'fastcompany', 'buzzfeed', 'wsj'],
+    press: ['complex', 'highsnobiety', 'fastcompany', 'wsj', 'buzzfeed', 'adweek'],
     pressLinks: {
       complex: 'https://www.complex.com/music/a/james-keith/sprite-freshfest-london-recap',
       adweek: 'https://www.adweek.com/brand-marketing/sprite-doubles-down-on-street-cred-to-win-over-gen-z/',
@@ -75,12 +76,16 @@ export const PROJECTS = [
       { figure: '58%', label: 'Web Increase Traffic' },
       { figure: '200', label: 'Global Pieces of coverage' },
     ],
-    // focal points are the detected face centres — object-position maps that
-    // point of the image to the same point of the tile, so faces survive any crop
-    hero: { src: 'assets/imagery/digitalself-a-w.jpg', pos: '25% 50%' },
+    // imagery and running order taken from the deck page itself
+    // (focal points derived in docs/focal-points.md)
+    hero: 'assets/imagery/digitalself-booth-w.jpg',
     video: 'assets/video/digitalself-case.mp4',
-    images: [{ src: 'assets/imagery/digitalself-hero-w.jpg', pos: '44% 50%' }],
-    press: ['ladbible', 'metro', 'dailymirror', 'thesun', 'dailymail', 'yahoo'],
+    images: [
+      { src: 'assets/imagery/digitalself-orange-w.jpg', pos: '36% 50%' },
+      { src: 'assets/imagery/digitalself-pair-w.jpg', pos: '77% 50%' },
+      { src: 'assets/imagery/digitalself-rig-w.jpg', pos: '38% 50%' },
+    ],
+    press: ['ladbible', 'thesun', 'dailymail', 'yahoo', 'dailymirror', 'metro'],
     pressLinks: {
       ladbible: 'https://www.ladbible.com/lifestyle/gen-z-online-and-offline-disconnect-lenovo-153586-20240526',
       dailymirror: 'https://www.mirror.co.uk/lifestyle/genz-living-double-life-online-32917902',
@@ -104,7 +109,7 @@ export const PROJECTS = [
     ],
     // focal points are the detected face centres — object-position maps that
     // point of the image to the same point of the tile, so faces survive any crop
-    hero: { src: 'assets/imagery/onlynans-2-w.jpg', pos: '54% 27%' },
+    hero: { src: 'assets/imagery/onlynans-hero-w.jpg', pos: '55% 16%' },
     // the deck hero's nan stickers, overlaid on the photo
     stickers: [
       { src: 'assets/imagery/onlynans-sticker-no.png', side: 'left' },
@@ -118,7 +123,7 @@ export const PROJECTS = [
       { src: 'assets/imagery/onlynans-guardian-w.jpg', fit: 'contain' },
     ],
     quote: { text: 'Some outstandingly funny copywriting', source: 'Creative Hits of the Week' },
-    press: ['guardian', 'dailymail', 'eveningstandard', 'times', 'walesonline'],
+    press: ['guardian', 'eveningstandard', 'dailymail', 'times', 'walesonline'],
     pressLinks: {
       guardian: 'https://www.theguardian.com/media/2022/jun/27/young-people-must-report-harmful-online-content-says-uk-watchdog',
       dailymail: 'https://www.dailymail.co.uk/news/article-10956397/TikTok-star-launches-OnlyNans-urging-young-users-report-offend-gran.html',
@@ -139,12 +144,15 @@ export const PROJECTS = [
       { figure: '17', label: 'critically endangered statuses improved' },
       { figure: '200x', label: 'faster internet' },
     ],
-    hero: 'assets/imagery/crusoe-2-w.jpg',
+    // imagery and running order taken from the deck page itself
+    // (focal points derived in docs/focal-points.md)
+    hero: 'assets/imagery/crusoe-laptop-w.jpg',
     images: [
-      { src: 'assets/imagery/crusoe-e-w.jpg', pos: '18% 59%' },
-      'assets/imagery/crusoe-a-w.jpg',
+      'assets/imagery/crusoe-sunset-w.jpg',
+      'assets/imagery/crusoe-coast-w.jpg',
+      'assets/imagery/crusoe-cabin-w.jpg',
     ],
-    press: ['techradar', 'fastcompany', 'larepubblica', 'vanityfair', 'forbes', 'cnn'],
+    press: ['vanityfair', 'forbes', 'cnn', 'techradar', 'fastcompany', 'larepubblica'],
     pressLinks: {
       techradar: 'https://www.techradar.com/news/lenovo-may-have-solved-the-wfh-problem-for-good',
       fastcompany: 'https://www.fastcompany.com/90806247/the-future-of-the-workplace-is-changing-and-so-are-the-tools-to-support-it',
@@ -160,12 +168,16 @@ export const PROJECTS = [
     index: '06',
     client: 'UCB Canada',
     title: 'Winnie-The-Pooh',
+    // the deck's rail lists this one more briefly than its masthead does
+    listName: 'UCB – Winnie the Pooh',
     disciplines: ['Social good'],
     description:
       'Myasthenia Gravis is a neurological disorder like motor-neurons. Christopher Robin had this disease. For the 100-year anniversary we made a special edition giving Pooh MG symptoms. It was the best piece of work the client has ever done (their words, not ours) and covered across Canadian TV.',
     stats: [{ figure: '79x', label: 'more coverage than the industry benchmark' }],
-    hero: 'assets/imagery/ucb-hero-w.jpg',
-    images: ['assets/imagery/ucb-b-w.jpg', 'assets/imagery/ucb-flatlay-w.jpg'],
+    // imagery and running order taken from the deck page itself
+    // (focal points derived in docs/focal-points.md)
+    hero: 'assets/imagery/ucb-cover-w.jpg',
+    images: ['assets/imagery/ucb-spread-w.jpg', 'assets/imagery/ucb-grid-w.jpg'],
     // logos lifted from the deck page — Canadian broadcast + trade coverage
     press: ['ctv', 'globalnews', 'cbc', 'littleblackbook'],
   },
@@ -201,7 +213,7 @@ export const PROJECTS = [
     ],
     // focal points are the detected face centres — object-position maps that
     // point of the image to the same point of the tile, so faces survive any crop
-    hero: { src: 'assets/imagery/nescafe-hero.jpg', pos: '72% 50%' },
+    hero: { src: 'assets/imagery/nescafe-still-w.jpg', pos: '77% 50%' },
     youtube: 'ls0UVO_mJt0', // Nescafé Gold "Those Few People" (Publicis Worldwide)
     images: [],
     press: [],
@@ -220,7 +232,7 @@ export const PROJECTS = [
     ],
     // focal points are the detected face centres — object-position maps that
     // point of the image to the same point of the tile, so faces survive any crop
-    hero: { src: 'assets/imagery/queenofsmall-hero-w.jpg', pos: '51% 50%' },
+    hero: { src: 'assets/imagery/queenofsmall-still-w.jpg', pos: '34% 50%' },
     video: 'assets/video/queenofsmall-case.mp4',
     images: [],
     press: ['bet', 'people', 'fortune'],
@@ -235,6 +247,7 @@ export const PROJECTS = [
     index: '10',
     client: 'LTA',
     title: 'Level Up',
+    listName: 'Lawn Tennis Association – Level Up',
     disciplines: ['Film'],
     description:
       'We encouraged young people from all backgrounds to play tennis…not just those who grew up on strawberries and cream. We did this by showcasing all the different superpowers kids can gain from playing tennis: epic concentration, incredible balance, and super speed.',

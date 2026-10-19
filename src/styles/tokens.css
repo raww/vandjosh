@@ -1,5 +1,8 @@
 /* ============================================================
    TOKENS — Vicky & Josh design system
+   Type and spacing are measured off the studio deck
+   (webupdate22.26.pdf, 960x540) and expressed against the
+   viewport, so the 16:9 proportions hold as the window scales.
    Ported from the Claude Design project (colors / typography /
    spacing / motion). Fonts are self-hosted via @fontsource,
    imported in the base layout.
@@ -44,7 +47,7 @@
 
   /* --- typography: typewriter (Copy) + grotesque (Art) --- */
   --font-mono: 'Courier Prime', 'Courier New', ui-monospace, monospace;
-  --font-sans: 'Hanken Grotesk Variable', 'Hanken Grotesk', system-ui, 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: 'Space Grotesk Variable', 'Space Grotesk', system-ui, 'Helvetica Neue', Arial, sans-serif;
   --font-serif: Georgia, 'Times New Roman', serif;
 
   --fw-light: 300;
