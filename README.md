@@ -79,7 +79,9 @@ The layout adapts to how much media the entry has (see
 press band and the rest below it. Every project currently supplies a hero.
 
 New press outlet? Add the white-on-transparent logo to `public/assets/press/`
-and one line to the `PRESS` map.
+and one line to the `PRESS` map. Trim the file to the artwork's bounds first:
+the band sets every logo to one height, so any dead margin in the file makes
+that logo render smaller than its neighbours.
 
 ## SEO
 

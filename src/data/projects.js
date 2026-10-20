@@ -13,7 +13,7 @@ export const PROJECTS = [
     title: 'Backing Every Business',
     disciplines: ['B2B', 'Film'],
     description:
-      'After 4 years of leading the creative on Lenovo’s successful small business initiative in North America, we were tasked in taking it global. The line “Backing Every Business” was launched by expert entrepreneur, Eva Longoria (she said our writing was “hilarious.”)',
+      'After 4 years of leading the creative on Lenovo’s successful small business initiative in North America, we took it global. “Backing Every Business” was launched by multi-hyphenate, expert entrepreneur, Eva Longoria…she said our writing was “hilarious.” Obvs.',
     stats: [
       { figure: '53k', label: 'Website Hits' },
       { figure: '295', label: 'Earned Pieces' },
@@ -23,7 +23,7 @@ export const PROJECTS = [
     // (focal points derived in docs/focal-points.md)
     hero: { src: 'assets/imagery/eva-desk-w.jpg', pos: '44% 50%' },
     youtube: 'OvqD0lj0bkg', // "Lenovo Backing Every Business with Eva Longoria" (Lenovo)
-    images: [{ src: 'assets/imagery/eva-red-w.jpg', pos: '50% 29%' }, { src: 'assets/imagery/eva-seated-w.jpg', pos: '50% 41%' }],
+    images: [{ src: 'assets/imagery/eva-red-w.jpg', pos: '50% 29%' }, { src: 'assets/imagery/eva-seated-w.jpg', pos: '50% 80%' }],
     press: ['yahoo', 'dailymail', 'bustle', 'people', 'independent', 'aol'],
     pressLinks: {
       independent: 'https://www.independent.co.uk/news/business/lenovo-eva-longoria-hollywood-american-japan-b2940219.html',
