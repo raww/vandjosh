@@ -291,7 +291,7 @@ video {
      the Client/Project column takes the rest, which it needs — the deck's
      longest project line runs to 42% on its own */
   grid-template-columns: minmax(0, 1fr) 54%;
-  column-gap: 2%;
+  column-gap: 1.5%;
   row-gap: clamp(10px, 1.4vw, 28px);
   align-items: start;
   text-align: left;
@@ -321,7 +321,7 @@ video {
 }
 .vj-figures .vj-figures-sep {
   color: var(--white-3);
-  padding: 0 0.45em;
+  padding: 0 0.3em; /* the deck sets a single space either side of the rule */
 }
 .vj-frame-header .vj-frame-desc {
   margin: 0;
@@ -400,7 +400,8 @@ button.vj-tile-playable {
   transition: transform var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
 }
 .vj-tile-playable:hover .vj-play-ring {
-  transform: scale(1.08);
+  opacity: 1;
+  transform: scale(1.06);
 }
 
 /* press quote, set as its own clipping card in the lower row */
@@ -442,10 +443,14 @@ button.vj-tile-playable {
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.6));
+  /* client: ringed play button at 30% transparency */
+  opacity: var(--play-opacity, 0.7);
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.45));
+  transition: opacity var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
 }
 .vj-play-ring svg {
-  width: clamp(34px, 3.6vw, 62px);
+  display: block;
+  width: clamp(40px, 4.2vw, 72px);
   height: auto;
 }
 
@@ -481,29 +486,31 @@ button.vj-tile-playable {
 }
 
 /* press logos, set as a full-width band between the media rows */
+/* client: every logo the same height, spread evenly from the left edge of the
+   left image to the right edge of the right image, with a band of black above
+   and below that is the same on every page */
 .vj-pressband {
+  --band-buffer: clamp(8px, 1.15vw, 24px);
+  --logo-height: clamp(16px, 2vw, 34px); /* widest set (OnlyNans) must fit at every width */
   flex: none;
   display: flex;
   align-items: center;
-  gap: clamp(10px, 1.6vw, 36px);
-  padding: 2px 0;
+  justify-content: space-between;
+  gap: clamp(8px, 1vw, 24px);
+  padding: var(--band-buffer) 0;
   min-width: 0;
 }
-/* each masthead gets an equal slot and is centred in it, so a square logo
-   sits as comfortably as a wide one */
 .vj-pressband > * {
-  flex: 1 1 0;
+  flex: 0 1 auto; /* may shrink: a logo then letterboxes rather than pushing the page wider */
   min-width: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 .vj-pressband img {
   display: block;
-  max-height: clamp(20px, 2.6vw, 40px);
-  max-width: 100%;
+  height: var(--logo-height);
   width: auto;
-  height: auto;
+  max-width: 100%;
   object-fit: contain;
   opacity: 0.92;
   transition: opacity var(--dur-fast) var(--ease-out);
@@ -679,10 +686,8 @@ button.vj-tile-playable {
     gap: var(--space-3);
   }
   .vj-pressband {
+    --logo-height: clamp(14px, 1.9vw, 24px);
     gap: var(--space-3);
-  }
-  .vj-pressband img {
-    max-height: 24px;
   }
   .vj-stickers {
     width: clamp(70px, 9vw, 110px);
@@ -701,8 +706,9 @@ button.vj-tile-playable {
   .vj-collage {
     gap: 8px;
   }
-  .vj-pressband img {
-    max-height: clamp(16px, 3vh, 26px);
+  .vj-pressband {
+    --logo-height: clamp(16px, 3vh, 26px);
+    --band-buffer: clamp(6px, 1.2vh, 14px);
   }
 }
 
@@ -769,11 +775,8 @@ button.vj-tile-playable {
     gap: var(--space-3) var(--space-5);
     order: 99; /* stacked: media first, coverage last */
   }
-  .vj-pressband > * {
-    flex: 0 0 auto;
-  }
   .vj-pressband img {
-    max-height: 22px;
+    height: 22px;
   }
   /* stickers sit as a row under the hero rather than a column beside it */
   .vj-stickers {
